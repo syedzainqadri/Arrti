@@ -1,0 +1,391 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.firebase_auth_app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+9        android:targetSdkVersion="30" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:3:5-67
+14-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:3:22-64
+15
+16    <queries>
+16-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:4:5-6:15
+17        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
+17-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:5:9-89
+17-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:5:19-86
+18    </queries>
+19
+20    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+20-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:24:5-79
+20-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:24:22-76
+21    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+21-->[com.android.installreferrer:installreferrer:1.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/c8cf1b664b59e77807bdc13651ab0504/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+21-->[com.android.installreferrer:installreferrer:1.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/c8cf1b664b59e77807bdc13651ab0504/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+22
+23    <application
+23-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:7:5-66:19
+24        android:name="androidx.multidex.MultiDexApplication"
+25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+25-->[androidx.core:core:1.3.2] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/4a97a41c2a5f93e89adbed818f3bf6b8/core-1.3.2/AndroidManifest.xml:24:18-86
+26        android:debuggable="true"
+27        android:icon="@mipmap/ic_launcher"
+27-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:9:9-43
+28        android:label="firebase_auth_app"
+28-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:8:9-42
+29        android:supportsRtl="true" >
+29-->[com.facebook.android:facebook-android-sdk:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/999231c0d9f1de2494c55ffd36ee38f4/jetified-facebook-android-sdk-12.3.0/AndroidManifest.xml:28:18-44
+30        <activity
+30-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:10:9-43:20
+31            android:name="com.example.firebase_auth_app.MainActivity"
+31-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:11:13-41
+32            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+32-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:14:13-163
+33            android:hardwareAccelerated="true"
+33-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:15:13-47
+34            android:launchMode="singleTop"
+34-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:12:13-43
+35            android:theme="@style/LaunchTheme"
+35-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:13:13-47
+36            android:windowSoftInputMode="adjustResize" >
+36-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:16:13-55
+37
+38            <!--
+39                 Specifies an Android theme to apply to this Activity as soon as
+40                 the Android process has started. This theme is visible to the user
+41                 while the Flutter UI initializes. After that, this theme continues
+42                 to determine the Window background behind the Flutter UI.
+43            -->
+44            <meta-data
+44-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:21:13-24:17
+45                android:name="io.flutter.embedding.android.NormalTheme"
+45-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:22:15-70
+46                android:resource="@style/NormalTheme" />
+46-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:23:15-52
+47            <meta-data
+47-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:26:13-111
+48                android:name="com.facebook.sdk.ApplicationId"
+48-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:26:24-69
+49                android:value="@string/facebook_app_id" />
+49-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:26:70-109
+50            <meta-data
+50-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:27:13-115
+51                android:name="com.facebook.sdk.ClientToken"
+51-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:27:24-67
+52                android:value="@string/facebook_client_token" />
+52-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:27:68-113
+53
+54            <!--
+55                 Displays an Android View that continues showing the launch screen
+56                 Drawable until Flutter paints its first frame, then this splash
+57                 screen fades out. A splash screen is useful to avoid any visual
+58                 gap between the end of Android's launch screen and the painting of
+59                 Flutter's first frame.
+60            -->
+61            <meta-data
+61-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:35:13-38:17
+62                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+62-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:36:15-79
+63                android:resource="@drawable/launch_background" />
+63-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:37:15-61
+64
+65            <intent-filter>
+65-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:39:13-42:29
+66                <action android:name="android.intent.action.MAIN" />
+66-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:40:17-68
+66-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:40:25-66
+67
+68                <category android:name="android.intent.category.LAUNCHER" />
+68-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:41:17-76
+68-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:41:27-74
+69            </intent-filter>
+70        </activity>
+71        <activity
+71-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:47:9-50:48
+72            android:name="com.facebook.FacebookActivity"
+72-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:48:13-57
+73            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+73-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:49:13-96
+74            android:label="@string/app_name"
+74-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:50:13-45
+75            android:theme="@style/com_facebook_activity_theme" />
+75-->[com.facebook.android:facebook-common:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/df34db93b75db6f2d1163dd791091cae/jetified-facebook-common-12.3.0/AndroidManifest.xml:33:13-63
+76        <activity
+76-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:51:9-60:20
+77            android:name="com.facebook.CustomTabActivity"
+77-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:52:13-58
+78            android:exported="true" >
+78-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:53:13-36
+79            <intent-filter>
+79-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:54:13-59:29
+80                <action android:name="android.intent.action.VIEW" />
+80-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:55:17-69
+80-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:55:25-66
+81
+82                <category android:name="android.intent.category.DEFAULT" />
+82-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:17-76
+82-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:27-73
+83                <category android:name="android.intent.category.BROWSABLE" />
+83-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:57:17-78
+83-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:57:27-75
+84
+85                <data android:scheme="@string/fb_login_protocol_scheme" />
+85-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:58:17-75
+85-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:58:23-72
+86            </intent-filter>
+87            <intent-filter>
+87-->[com.facebook.android:facebook-common:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/df34db93b75db6f2d1163dd791091cae/jetified-facebook-common-12.3.0/AndroidManifest.xml:39:13-48:29
+88                <action android:name="android.intent.action.VIEW" />
+88-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:55:17-69
+88-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:55:25-66
+89
+90                <category android:name="android.intent.category.DEFAULT" />
+90-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:17-76
+90-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:27-73
+91                <category android:name="android.intent.category.BROWSABLE" />
+91-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:57:17-78
+91-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:57:27-75
+92
+93                <data
+93-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:58:17-75
+94                    android:host="cct.com.example.firebase_auth_app"
+95                    android:scheme="fbconnect" />
+95-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:58:23-72
+96            </intent-filter>
+97        </activity>
+98        <!--
+99             Don't delete the meta-data below.
+100             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+101        -->
+102        <meta-data
+102-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:63:9-65:33
+103            android:name="flutterEmbedding"
+103-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:64:13-44
+104            android:value="2" />
+104-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:65:13-30
+105
+106        <service
+106-->[:firebase_auth] /Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
+107            android:name="com.google.firebase.components.ComponentDiscoveryService"
+107-->[:firebase_auth] /Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-89
+108            android:directBootAware="true"
+108-->[com.google.firebase:firebase-common:20.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/be1f31d795f15c1bd24708ca9c440629/jetified-firebase-common-20.0.0/AndroidManifest.xml:35:13-43
+109            android:exported="false" >
+109-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:76:13-37
+110            <meta-data
+110-->[:firebase_auth] /Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+111                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
+111-->[:firebase_auth] /Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-124
+112                android:value="com.google.firebase.components.ComponentRegistrar" />
+112-->[:firebase_auth] /Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+113            <meta-data
+113-->[:firebase_core] /Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+114                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+114-->[:firebase_core] /Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-124
+115                android:value="com.google.firebase.components.ComponentRegistrar" />
+115-->[:firebase_core] /Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+116            <meta-data
+116-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:77:13-79:85
+117                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+117-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:78:17-109
+118                android:value="com.google.firebase.components.ComponentRegistrar" />
+118-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:79:17-82
+119        </service>
+120
+121        <activity android:name="com.facebook.CustomTabMainActivity" />
+121-->[com.facebook.android:facebook-common:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/df34db93b75db6f2d1163dd791091cae/jetified-facebook-common-12.3.0/AndroidManifest.xml:34:9-71
+121-->[com.facebook.android:facebook-common:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/df34db93b75db6f2d1163dd791091cae/jetified-facebook-common-12.3.0/AndroidManifest.xml:34:19-68
+122        <!--
+123         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+124         with the application context. This config is merged in with the host app's manifest,
+125         but there can only be one provider with the same authority activated at any given
+126         point; so if the end user has two or more different apps that use Facebook SDK, only the
+127         first one will be able to use the provider. To work around this problem, we use the
+128         following placeholder in the authority to identify each host application as if it was
+129         a completely different provider.
+130        -->
+131        <provider
+131-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:39:9-42:40
+132            android:name="com.facebook.internal.FacebookInitProvider"
+132-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:40:13-70
+133            android:authorities="com.example.firebase_auth_app.FacebookInitProvider"
+133-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:41:13-72
+134            android:exported="false" />
+134-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:42:13-37
+135
+136        <receiver
+136-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:44:9-50:20
+137            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+137-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:45:13-86
+138            android:exported="false" >
+138-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:46:13-37
+139            <intent-filter>
+139-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:47:13-49:29
+140                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+140-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:48:17-95
+140-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:48:25-92
+141            </intent-filter>
+142        </receiver>
+143        <receiver
+143-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:51:9-57:20
+144            android:name="com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver"
+144-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:52:13-118
+145            android:exported="false" >
+145-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:53:13-37
+146            <intent-filter>
+146-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:54:13-56:29
+147                <action android:name="com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED" />
+147-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:55:17-103
+147-->[com.facebook.android:facebook-core:12.3.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/8285eddd908a1da2ca01e9f888de4fa5/jetified-facebook-core-12.3.0/AndroidManifest.xml:55:25-100
+148            </intent-filter>
+149        </receiver>
+150
+151        <activity
+151-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:27:9-44:20
+152            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+152-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:28:13-80
+153            android:excludeFromRecents="true"
+153-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:29:13-46
+154            android:exported="true"
+154-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:30:13-36
+155            android:launchMode="singleTask"
+155-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:31:13-44
+156            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+156-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:32:13-72
+157            <intent-filter>
+157-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:33:13-43:29
+158                <action android:name="android.intent.action.VIEW" />
+158-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:55:17-69
+158-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:55:25-66
+159
+160                <category android:name="android.intent.category.DEFAULT" />
+160-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:17-76
+160-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:27-73
+161                <category android:name="android.intent.category.BROWSABLE" />
+161-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:57:17-78
+161-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:57:27-75
+162
+163                <data
+163-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:58:17-75
+164                    android:host="firebase.auth"
+165                    android:path="/"
+166                    android:scheme="genericidp" />
+166-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:58:23-72
+167            </intent-filter>
+168        </activity>
+169        <activity
+169-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:45:9-62:20
+170            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+170-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:46:13-79
+171            android:excludeFromRecents="true"
+171-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:47:13-46
+172            android:exported="true"
+172-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:48:13-36
+173            android:launchMode="singleTask"
+173-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:49:13-44
+174            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+174-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:50:13-72
+175            <intent-filter>
+175-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:51:13-61:29
+176                <action android:name="android.intent.action.VIEW" />
+176-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:55:17-69
+176-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:55:25-66
+177
+178                <category android:name="android.intent.category.DEFAULT" />
+178-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:17-76
+178-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:27-73
+179                <category android:name="android.intent.category.BROWSABLE" />
+179-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:57:17-78
+179-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:57:27-75
+180
+181                <data
+181-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:58:17-75
+182                    android:host="firebase.auth"
+183                    android:path="/"
+184                    android:scheme="recaptcha" />
+184-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:58:23-72
+185            </intent-filter>
+186        </activity>
+187
+188        <service
+188-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:64:9-73:19
+189            android:name="com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService"
+189-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:65:13-101
+190            android:enabled="true"
+190-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:66:13-35
+191            android:exported="false" >
+191-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:67:13-37
+192            <intent-filter>
+192-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:68:13-72:29
+193                <action android:name="com.google.firebase.auth.api.gms.service.START" />
+193-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:69:17-89
+193-->[com.google.firebase:firebase-auth:21.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/48db3a26d0e210f3bf460c0f3f302962/jetified-firebase-auth-21.0.1/AndroidManifest.xml:69:25-86
+194
+195                <category android:name="android.intent.category.DEFAULT" />
+195-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:17-76
+195-->/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/android/app/src/main/AndroidManifest.xml:56:27-73
+196            </intent-filter>
+197        </service>
+198
+199        <provider
+199-->[com.google.firebase:firebase-common:20.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/be1f31d795f15c1bd24708ca9c440629/jetified-firebase-common-20.0.0/AndroidManifest.xml:26:9-31:39
+200            android:name="com.google.firebase.provider.FirebaseInitProvider"
+200-->[com.google.firebase:firebase-common:20.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/be1f31d795f15c1bd24708ca9c440629/jetified-firebase-common-20.0.0/AndroidManifest.xml:27:13-77
+201            android:authorities="com.example.firebase_auth_app.firebaseinitprovider"
+201-->[com.google.firebase:firebase-common:20.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/be1f31d795f15c1bd24708ca9c440629/jetified-firebase-common-20.0.0/AndroidManifest.xml:28:13-72
+202            android:directBootAware="true"
+202-->[com.google.firebase:firebase-common:20.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/be1f31d795f15c1bd24708ca9c440629/jetified-firebase-common-20.0.0/AndroidManifest.xml:29:13-43
+203            android:exported="false"
+203-->[com.google.firebase:firebase-common:20.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/be1f31d795f15c1bd24708ca9c440629/jetified-firebase-common-20.0.0/AndroidManifest.xml:30:13-37
+204            android:initOrder="100" />
+204-->[com.google.firebase:firebase-common:20.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/be1f31d795f15c1bd24708ca9c440629/jetified-firebase-common-20.0.0/AndroidManifest.xml:31:13-36
+205
+206        <activity
+206-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:23:9-27:75
+207            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+207-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:24:13-93
+208            android:excludeFromRecents="true"
+208-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:25:13-46
+209            android:exported="false"
+209-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:26:13-37
+210            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+210-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:27:13-72
+211        <!--
+212            Service handling Google Sign-In user revocation. For apps that do not integrate with
+213            Google Sign-In, this service will never be started.
+214        -->
+215        <service
+215-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:33:9-37:51
+216            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+216-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:34:13-89
+217            android:exported="true"
+217-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:35:13-36
+218            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+218-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:36:13-107
+219            android:visibleToInstantApps="true" />
+219-->[com.google.android.gms:play-services-auth:20.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/AndroidManifest.xml:37:13-48
+220
+221        <activity
+221-->[com.google.android.gms:play-services-base:18.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/37425ca1da537beeff65bfee35ec9b80/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+222            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+222-->[com.google.android.gms:play-services-base:18.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/37425ca1da537beeff65bfee35ec9b80/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+223            android:exported="false"
+223-->[com.google.android.gms:play-services-base:18.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/37425ca1da537beeff65bfee35ec9b80/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+224            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+224-->[com.google.android.gms:play-services-base:18.0.1] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/37425ca1da537beeff65bfee35ec9b80/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+225
+226        <meta-data
+226-->[com.google.android.gms:play-services-basement:18.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/2ffdea9840cb447d8a46ba75a1207d80/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+227            android:name="com.google.android.gms.version"
+227-->[com.google.android.gms:play-services-basement:18.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/2ffdea9840cb447d8a46ba75a1207d80/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+228            android:value="@integer/google_play_services_version" />
+228-->[com.google.android.gms:play-services-basement:18.0.0] /Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/2ffdea9840cb447d8a46ba75a1207d80/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+229    </application>
+230
+231</manifest>
