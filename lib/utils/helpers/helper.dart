@@ -1,28 +1,22 @@
 import 'package:apni_mandi/utils/constants/color_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
-successToast(BuildContext context, String msg) {
-  Fluttertoast.showToast(
-      msg: msg,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
+successToast(String title, String msg) {
+  Get.snackbar(
+      title, msg,
       backgroundColor: ColorManager.primaryColor,
-      textColor: ColorManager.whiteColor,
-      fontSize: 16.0
+      colorText: ColorManager.whiteColor,
+      snackPosition: SnackPosition.BOTTOM,
   );
 }
 
-errorToast(BuildContext context, String msg) {
-  Fluttertoast.showToast(
-      msg: msg,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: ColorManager.redColor,
-      textColor: ColorManager.whiteColor,
-      fontSize: 16.0
+errorToast(String title, String msg) {
+  Get.snackbar(
+    title, msg,
+    backgroundColor: ColorManager.redColor,
+    colorText: ColorManager.whiteColor,
+    snackPosition: SnackPosition.BOTTOM,
   );
 }
 
