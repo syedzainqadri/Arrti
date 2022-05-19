@@ -1,2 +1,2 @@
-# Arrti
-App for Mandi
+# apni_mandi
+ 

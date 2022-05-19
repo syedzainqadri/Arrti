@@ -1,6 +1,6 @@
 {
-    "name": "firebase_auth_app",
-    "short_name": "firebase_auth_app",
+    "name": "apni_mandi",
+    "short_name": "apni_mandi",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
