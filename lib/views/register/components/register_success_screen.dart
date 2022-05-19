@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'package:apni_mandi/utils/constants/assets_manager.dart';
 import 'package:apni_mandi/utils/constants/color_manager.dart';
@@ -7,7 +6,6 @@ import 'package:apni_mandi/utils/constants/values_manager.dart';
 import 'package:apni_mandi/utils/helpers/helper.dart';
 import 'package:apni_mandi/utils/helpers/text_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +17,6 @@ class RegisterSuccessScreen extends StatefulWidget {
 }
 
 class _RegisterSuccessScreenState extends State<RegisterSuccessScreen> {
-
   late Timer timer;
 
   @override
@@ -47,7 +44,8 @@ class _RegisterSuccessScreenState extends State<RegisterSuccessScreen> {
             child: Image.asset(AssetImages.success, height: 50.h),
           ),
           buildSpaceVertical(10.h),
-          textStyle5(StringsManager.registerSuccess, TextAlign.center, ColorManager.primaryColor),
+          textStyle5(StringsManager.registerSuccess, TextAlign.center,
+              ColorManager.primaryColor),
         ],
       ),
     );

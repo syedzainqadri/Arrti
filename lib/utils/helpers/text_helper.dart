@@ -1,13 +1,11 @@
-
-
-import 'dart:ui';
 import 'package:apni_mandi/utils/constants/font_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Text textStyle1(String title, TextAlign textAlign, Color color) {
-  return Text(title,
+  return Text(
+    title,
     textAlign: textAlign,
     style: GoogleFonts.openSans(
       fontSize: FontSize.s14,
@@ -18,7 +16,8 @@ Text textStyle1(String title, TextAlign textAlign, Color color) {
 }
 
 Text textStyle1_5(String title, TextAlign textAlign, Color color) {
-  return Text(title,
+  return Text(
+    title,
     textAlign: textAlign,
     style: GoogleFonts.openSans(
       fontSize: FontSize.s14,
@@ -30,7 +29,8 @@ Text textStyle1_5(String title, TextAlign textAlign, Color color) {
 }
 
 Text textStyle2(String title, TextAlign textAlign, Color color) {
-  return Text(title,
+  return Text(
+    title,
     textAlign: textAlign,
     style: GoogleFonts.openSans(
       fontSize: FontSize.s16,
@@ -41,7 +41,8 @@ Text textStyle2(String title, TextAlign textAlign, Color color) {
 }
 
 Text textStyle3(String title, TextAlign textAlign, Color color) {
-  return Text(title,
+  return Text(
+    title,
     textAlign: textAlign,
     style: GoogleFonts.openSans(
       fontSize: FontSize.s18,
@@ -52,7 +53,8 @@ Text textStyle3(String title, TextAlign textAlign, Color color) {
 }
 
 Text textStyle4(String title, TextAlign textAlign, Color color) {
-  return Text(title,
+  return Text(
+    title,
     textAlign: textAlign,
     style: GoogleFonts.openSans(
       fontSize: FontSize.s20,
@@ -63,7 +65,8 @@ Text textStyle4(String title, TextAlign textAlign, Color color) {
 }
 
 Text textStyle5(String title, TextAlign textAlign, Color color) {
-  return Text(title,
+  return Text(
+    title,
     textAlign: textAlign,
     style: GoogleFonts.openSans(
       fontSize: FontSize.s22,
@@ -74,7 +77,8 @@ Text textStyle5(String title, TextAlign textAlign, Color color) {
 }
 
 Text textStyle6(String title, TextAlign textAlign, Color color) {
-  return Text(title,
+  return Text(
+    title,
     textAlign: textAlign,
     style: GoogleFonts.openSans(
       fontSize: FontSize.s24,
@@ -85,7 +89,8 @@ Text textStyle6(String title, TextAlign textAlign, Color color) {
 }
 
 Text textStyle7(String title, TextAlign textAlign, Color color) {
-  return Text(title,
+  return Text(
+    title,
     textAlign: textAlign,
     style: GoogleFonts.openSans(
       fontSize: FontSize.s28,

@@ -4,7 +4,7 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.example.firebase_auth_app",
+  "applicationId": "com.AZainApps.apni_mandi",
   "variantName": "debug",
   "elements": [
     {

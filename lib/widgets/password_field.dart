@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:apni_mandi/utils/constants/color_manager.dart';
 import 'package:apni_mandi/utils/constants/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +10,14 @@ class PasswordField extends StatefulWidget {
   final String hintText, errorMsj;
   final IconData icon;
 
-  PasswordField({Key? key, required this.passController, required this.passwordVisibility,
-    required this.hintText, required this.errorMsj, required this.icon}) : super(key: key);
+  PasswordField(
+      {Key? key,
+      required this.passController,
+      required this.passwordVisibility,
+      required this.hintText,
+      required this.errorMsj,
+      required this.icon})
+      : super(key: key);
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -32,7 +40,7 @@ class _PasswordFieldState extends State<PasswordField> {
           return null;
         },
         decoration: InputDecoration(
-          enabledBorder:  const OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
             borderSide: BorderSide(color: ColorManager.primaryColor),
           ),
@@ -58,7 +66,9 @@ class _PasswordFieldState extends State<PasswordField> {
           filled: true,
           suffixIcon: IconButton(
             icon: Icon(
-              widget.passwordVisibility ? Icons.visibility : Icons.visibility_off,
+              widget.passwordVisibility
+                  ? Icons.visibility
+                  : Icons.visibility_off,
               color: ColorManager.primaryColor,
             ),
             onPressed: () {

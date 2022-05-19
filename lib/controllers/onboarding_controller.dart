@@ -1,9 +1,7 @@
-
 import 'package:apni_mandi/models/onboarding_info_model.dart';
 import 'package:apni_mandi/utils/constants/assets_manager.dart';
 import 'package:apni_mandi/utils/constants/strings_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
 import 'package:get/get.dart';
 
 class OnboardingController extends GetxController {
@@ -24,5 +22,4 @@ class OnboardingController extends GetxController {
     OnboardingInfoModel(AssetImages.splash2, StringsManager.splash2Title),
     OnboardingInfoModel(AssetImages.splash3, StringsManager.splash3Title)
   ];
-
 }

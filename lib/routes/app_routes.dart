@@ -14,14 +14,26 @@ class AppRoutes {
   AppRoutes._(); //this is to prevent anyone from instantiating this object
   static final routes = [
     GetPage(name: '/', page: () => const SplashScreen()),
-    GetPage(name: '/onBoarding', page: () => const OnboardingScreen(), transition: Transition.zoom),
-    GetPage(name: '/forgotPass', page: () =>   ForgotPasswordScreen(), transition: Transition.rightToLeftWithFade),
-    GetPage(name: '/signupSuccess', page: () =>  const RegisterSuccessScreen()),
-    GetPage(name: '/signinSuccess', page: () =>  const LoginSuccessScreen()),
-    GetPage(name: '/personalPC', page: () =>  const PersonalProfileCompletion()),
-    GetPage(name: '/businessPC', page: () =>  const BusinessProfileCompletion()),
-    GetPage(name: '/authView', page: () =>  const AuthToggleView()),
-    GetPage(name: '/waitingView', page: () =>  WaitingScreen(), transition: Transition.fadeIn),
-    GetPage(name: '/searchView', page: () =>  SearchMemberScreen(), transition: Transition.fadeIn),
+    GetPage(
+        name: '/onBoarding',
+        page: () => const OnboardingScreen(),
+        transition: Transition.zoom),
+    GetPage(
+        name: '/forgotPass',
+        page: () => ForgotPasswordScreen(),
+        transition: Transition.rightToLeftWithFade),
+    GetPage(name: '/signupSuccess', page: () => const RegisterSuccessScreen()),
+    GetPage(name: '/signinSuccess', page: () => const LoginSuccessScreen()),
+    GetPage(name: '/personalPC', page: () => const PersonalProfileCompletion()),
+    GetPage(name: '/businessPC', page: () => const BusinessProfileCompletion()),
+    GetPage(name: '/authView', page: () => const AuthToggleView()),
+    GetPage(
+        name: '/waitingView',
+        page: () => WaitingScreen(),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: '/searchView',
+        page: () => const SearchMemberScreen(),
+        transition: Transition.fadeIn),
   ];
 }
