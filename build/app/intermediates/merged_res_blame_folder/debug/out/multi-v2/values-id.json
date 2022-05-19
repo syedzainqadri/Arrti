@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-id/values-id.xml",
+            "outputFile": "/Users/xain/Documents/GitHub/Arrti/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-id/values-id.xml",
             "map": [
                 {
-                    "source": "/Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/df34db93b75db6f2d1163dd791091cae/jetified-facebook-common-12.3.0/res/values-id/values-id.xml",
+                    "source": "/Users/xain/.gradle/caches/transforms-2/files-2.1/6267e434a01ed28e997c584562fce979/jetified-facebook-common-13.2.0/res/values-id/values-id.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

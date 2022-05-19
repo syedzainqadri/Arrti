@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/google_sign_in/intermediates/res/merged/debug/values-v16/values-v16.xml",
+            "outputFile": "/Users/xain/Documents/GitHub/Arrti/build/google_sign_in/intermediates/res/merged/debug/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/210dcd53f0173fc607b82fcc418b117b/core-1.2.0/res/values-v16/values-v16.xml",
+                    "source": "/Users/xain/.gradle/caches/transforms-2/files-2.1/875654acb8fd75501dc33efa1bebb479/core-1.6.0/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/google_sign_in/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+            "outputFile": "/Users/xain/Documents/GitHub/Arrti/build/google_sign_in/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/210dcd53f0173fc607b82fcc418b117b/core-1.2.0/res/values-v16/values-v16.xml",
+                    "source": "/Users/xain/.gradle/caches/transforms-2/files-2.1/875654acb8fd75501dc33efa1bebb479/core-1.6.0/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

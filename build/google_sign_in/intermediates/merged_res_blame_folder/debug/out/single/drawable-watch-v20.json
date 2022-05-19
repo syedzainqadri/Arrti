@@ -1,14 +1,14 @@
 [
     {
-        "merged": "/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/google_sign_in/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_light_normal.xml",
-        "source": "/Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/res/drawable-watch-v20/common_google_signin_btn_text_light_normal.xml"
+        "merged": "/Users/xain/Documents/GitHub/Arrti/build/google_sign_in/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_light_normal.xml",
+        "source": "/Users/xain/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/res/drawable-watch-v20/common_google_signin_btn_text_light_normal.xml"
     },
     {
-        "merged": "/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/google_sign_in/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_disabled.xml",
-        "source": "/Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/res/drawable-watch-v20/common_google_signin_btn_text_disabled.xml"
+        "merged": "/Users/xain/Documents/GitHub/Arrti/build/google_sign_in/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_dark_normal.xml",
+        "source": "/Users/xain/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/res/drawable-watch-v20/common_google_signin_btn_text_dark_normal.xml"
     },
     {
-        "merged": "/Users/ZAINULLAH/Documents/EwigSol-Projects/firebase_auth_app/build/google_sign_in/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_dark_normal.xml",
-        "source": "/Users/ZAINULLAH/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/res/drawable-watch-v20/common_google_signin_btn_text_dark_normal.xml"
+        "merged": "/Users/xain/Documents/GitHub/Arrti/build/google_sign_in/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_disabled.xml",
+        "source": "/Users/xain/.gradle/caches/transforms-2/files-2.1/933009813afddbd11cc84c781f3e35e5/jetified-play-services-auth-20.0.1/res/drawable-watch-v20/common_google_signin_btn_text_disabled.xml"
     }
 ]
