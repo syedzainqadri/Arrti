@@ -10,6 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
+import '../../../controllers/profile_controller.dart';
+import '../../../models/business_info_model.dart';
+import '../../../models/personal_info_model.dart';
+
 class LoginSuccessScreen extends StatefulWidget {
   const LoginSuccessScreen({Key? key}) : super(key: key);
 
@@ -20,13 +24,38 @@ class LoginSuccessScreen extends StatefulWidget {
 class _LoginSuccessScreenState extends State<LoginSuccessScreen> {
 
   late Timer timer;
+  final ProfileController _profileController = Get.put(ProfileController());
+  PersonalInfoModel? personalInfoModel;
+  BusinessInfoModel? businessInfoModel;
 
   @override
   void initState() {
-    timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      Get.offNamed('/personalPC');
-    });
+    getData();
     super.initState();
+  }
+
+  getData() async{
+    personalInfoModel = await _profileController.getPersonalData();
+    businessInfoModel = await _profileController.getBusinessData();
+
+    if(personalInfoModel != null && businessInfoModel != null ){
+      timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+        Get.offNamed('/waitingView');
+      });
+    }else if(personalInfoModel == null){
+      timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+        Get.offNamed('/personalPC');
+      });
+    }else if(businessInfoModel == null){
+      timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+        Get.offNamed('/businessPC');
+      });
+    }else{
+      timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+        Get.offNamed('/personalPC');
+      });
+    }
+    setState(() { });
   }
 
   @override

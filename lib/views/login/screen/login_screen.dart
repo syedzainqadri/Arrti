@@ -86,9 +86,7 @@ class LoginScreen extends StatelessWidget {
                 onTap: () {
                   if(_formKey.currentState!.validate()){
                     _formKey.currentState!.save();
-                    _authController.login(
-                      emailController.text.trim(), passwordController.text.trim(),
-                    );
+                    _authController.login(emailController.text.trim(), passwordController.text.trim());
                   }
                 },
                 child: Obx(() {

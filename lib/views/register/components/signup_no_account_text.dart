@@ -4,11 +4,11 @@ import 'package:apni_mandi/utils/constants/strings_manager.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 class SignupNoAccountText extends StatelessWidget {
   final Function toggleView;
-  const SignupNoAccountText({Key? key, required this.toggleView})
-      : super(key: key);
+  const SignupNoAccountText({Key? key, required this.toggleView}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,9 @@ class SignupNoAccountText extends StatelessWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    toggleView();
-                  }),
+                  toggleView();
+                  }
+            ),
           ],
         ),
       ),

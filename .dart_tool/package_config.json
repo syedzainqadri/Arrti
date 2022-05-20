@@ -201,7 +201,7 @@
     },
     {
       "name": "google_sign_in_ios",
-      "rootUri": "file:///Users/xain/development/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_ios-5.2.7",
+      "rootUri": "file:///Users/xain/development/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_ios-5.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -249,7 +249,7 @@
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///Users/xain/development/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_ios-0.8.5+4",
+      "rootUri": "file:///Users/xain/development/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_ios-0.8.5+5",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -500,7 +500,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-05-19T09:50:19.375363Z",
+  "generated": "2022-05-20T06:45:33.413603Z",
   "generator": "pub",
   "generatorVersion": "2.17.0"
 }

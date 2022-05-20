@@ -6,6 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/profile_controller.dart';
+import '../../models/business_info_model.dart';
+import '../../models/personal_info_model.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -19,17 +23,27 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   late Tween<double> _tweenSize;
   late Animation<double> _animationSize;
   late AnimationController _animationController;
+  final ProfileController _profileController = Get.put(ProfileController());
+  PersonalInfoModel? personalInfoModel;
+  BusinessInfoModel? businessInfoModel;
 
   String? userId;
   int? initScreen;
   @override
   void initState() {
     super.initState();
+    getData();
     _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _tweenSize = Tween(begin: 20, end: 180);
     _animationSize = _tweenSize.animate(_animationController);
     _animationController.forward();
     startTime();
+  }
+
+  getData() async{
+    personalInfoModel = await _profileController.getPersonalData();
+    businessInfoModel = await _profileController.getBusinessData();
+    setState(() { });
   }
 
   startTime() async {
@@ -44,7 +58,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     if(initScreen == 0 || initScreen == null){
       Get.toNamed('/onBoarding');
     }else if(userId != null){
-      Get.toNamed('/waitingView');
+      if(personalInfoModel != null && businessInfoModel != null ){
+        Get.offNamed('/waitingView');
+      }else if(personalInfoModel == null){
+        Get.offNamed('/personalPC');
+      }else if(businessInfoModel == null){
+        Get.offNamed('/businessPC');
+      }else{
+        Get.offNamed('/personalPC');
+      }
     }else{
       Get.toNamed('/authView');
     }

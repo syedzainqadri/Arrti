@@ -1,5 +1,6 @@
 import 'package:apni_mandi/utils/constants/color_manager.dart';
 import 'package:apni_mandi/utils/constants/values_manager.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -29,6 +30,7 @@ class SocialCard extends StatelessWidget {
             ),
           ],
           shape: BoxShape.circle,
+
         ),
         child: Image.asset(icon!, fit: BoxFit.contain),
       ),
