@@ -1,5 +1,6 @@
 import 'package:apni_mandi/utils/constants/color_manager.dart';
 import 'package:apni_mandi/utils/constants/values_manager.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GetTextField extends StatelessWidget {
@@ -17,47 +18,51 @@ class GetTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-      child: TextFormField(
-        controller: controller,
-        obscureText: isObscureText,
-        enabled: isEnable,
-        keyboardType: inputType,
-        maxLines: inputLines,
-        maxLength: inputLength,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter $hintName';
-          }
-          return null;
-        },
-        decoration: InputDecoration(
-          enabledBorder:  const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-            borderSide: BorderSide(color: ColorManager.primaryColor),
+    return Container(
+      height: 70,
+      margin: EdgeInsets.only(top: 10),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+        child: TextFormField(
+          controller: controller,
+          obscureText: isObscureText,
+          enabled: isEnable,
+          keyboardType: inputType,
+          maxLines: inputLines,
+          maxLength: inputLength,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter $hintName';
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+            enabledBorder:  const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+              borderSide: BorderSide(color: ColorManager.primaryColor),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+              borderSide: BorderSide(color: ColorManager.primaryColor),
+            ),
+            errorBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+              borderSide: BorderSide(color: ColorManager.redColor),
+            ),
+            focusedErrorBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+              borderSide: BorderSide(color: ColorManager.redColor),
+            ),
+            disabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+              borderSide: BorderSide(color: ColorManager.primaryColor),
+            ),
+            prefixIcon: Icon(icon, color: ColorManager.primaryColor),
+            hintText: hintName,
+            hintStyle: const TextStyle(fontSize: AppSize.s14),
+            fillColor: ColorManager.whiteColor,
+            filled: true,
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-            borderSide: BorderSide(color: ColorManager.primaryColor),
-          ),
-          errorBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-            borderSide: BorderSide(color: ColorManager.redColor),
-          ),
-          focusedErrorBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-            borderSide: BorderSide(color: ColorManager.redColor),
-          ),
-          disabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-            borderSide: BorderSide(color: ColorManager.primaryColor),
-          ),
-          prefixIcon: Icon(icon, color: ColorManager.primaryColor),
-          hintText: hintName,
-          hintStyle: const TextStyle(fontSize: AppSize.s14),
-          fillColor: ColorManager.whiteColor,
-          filled: true,
         ),
       ),
     );

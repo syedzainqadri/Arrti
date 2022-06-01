@@ -61,9 +61,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       if(personalInfoModel != null && businessInfoModel != null ){
         Get.offNamed('/waitingView');
       }else if(personalInfoModel == null){
-        Get.offNamed('/personalPC');
+        Get.offNamed('/waitingView');
       }else if(businessInfoModel == null){
-        Get.offNamed('/businessPC');
+        Get.offNamed('/waitingView');
       }else{
         Get.offNamed('/personalPC');
       }
