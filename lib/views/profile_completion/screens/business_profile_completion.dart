@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:apni_mandi/controllers/business_profile_completion_controller.dart';
 import 'package:apni_mandi/utils/constants/assets_manager.dart';
@@ -16,16 +15,15 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
-
 class BusinessProfileCompletion extends StatefulWidget {
   const BusinessProfileCompletion({Key? key}) : super(key: key);
 
   @override
-  State<BusinessProfileCompletion> createState() => _BusinessProfileCompletionState();
+  State<BusinessProfileCompletion> createState() =>
+      _BusinessProfileCompletionState();
 }
 
 class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
-
   final businessNameController = TextEditingController();
   final addressController = TextEditingController();
   final emailController = TextEditingController();
@@ -41,7 +39,6 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
   DateFormat formatter = DateFormat('dd-MM-yyyy');
   String? formatted;
 
-
   List<DropdownMenuItem<String>> cities = const [
     DropdownMenuItem(child: Text("Islamabad"), value: "Islamabad"),
     DropdownMenuItem(child: Text("Rawalpindi"), value: "Rawalpindi"),
@@ -52,7 +49,8 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
 
   List<DropdownMenuItem<String>> mandees = const [
     DropdownMenuItem(child: Text("Islamabad Mandi"), value: "Islamabad Mandi"),
-    DropdownMenuItem(child: Text("Rawalpindi Mandi"), value: "Rawalpindi Mandi"),
+    DropdownMenuItem(
+        child: Text("Rawalpindi Mandi"), value: "Rawalpindi Mandi"),
     DropdownMenuItem(child: Text("Lahore Mandi"), value: "Lahore Mandi"),
     DropdownMenuItem(child: Text("Peshawar Mandi"), value: "Peshawar Mandi"),
     DropdownMenuItem(child: Text("Swabi Mandi"), value: "Swabi Mandi"),
@@ -60,7 +58,8 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
 
   List<DropdownMenuItem<String>> provinces = const [
     DropdownMenuItem(child: Text("Punjab"), value: "Punjab"),
-    DropdownMenuItem(child: Text("Khyber Pukhtunkhwa"), value: "Khyber Pukhtunkhwa"),
+    DropdownMenuItem(
+        child: Text("Khyber Pukhtunkhwa"), value: "Khyber Pukhtunkhwa"),
     DropdownMenuItem(child: Text("Sindh"), value: "Sindh"),
     DropdownMenuItem(child: Text("Baluchistan"), value: "Baluchistan"),
   ];
@@ -69,11 +68,11 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
   File? cameraImage;
   final picker = ImagePicker();
 
-  final BusinessProfileCompletionController _profileCompletionController = Get.put(BusinessProfileCompletionController());
+  final BusinessProfileCompletionController _profileCompletionController =
+      Get.put(BusinessProfileCompletionController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
@@ -82,17 +81,13 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
             children: [
               buildSpaceVertical(5.h),
               Center(
-                child: textStyle7(
-                    StringsManager.businessPC,
-                    TextAlign.center,
+                child: textStyle7(StringsManager.businessPC, TextAlign.center,
                     ColorManager.primaryColor),
               ),
               buildSpaceVertical(1.5.h),
               Center(
-                child: textStyle2(
-                    StringsManager.businessPCText,
-                    TextAlign.center,
-                    ColorManager.grayColor),
+                child: textStyle2(StringsManager.businessPCText,
+                    TextAlign.center, ColorManager.grayColor),
               ),
               buildSpaceVertical(2.h),
 
@@ -103,23 +98,23 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                   fit: StackFit.expand,
                   clipBehavior: Clip.none,
                   children: [
-                    cameraImage != null ?
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: ColorManager.grayColor,
-                      backgroundImage: FileImage(cameraImage!),
-                    )
-                        : galleryImage != null ?
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: ColorManager.grayColor,
-                      backgroundImage: FileImage(galleryImage!),
-                    )
-                        : const CircleAvatar(
-                      radius: 50,
-                      backgroundColor: ColorManager.grayColor,
-                      backgroundImage: AssetImage(AssetImages.avatar),
-                    ),
+                    cameraImage != null
+                        ? CircleAvatar(
+                            radius: 50,
+                            backgroundColor: ColorManager.grayColor,
+                            backgroundImage: FileImage(cameraImage!),
+                          )
+                        : galleryImage != null
+                            ? CircleAvatar(
+                                radius: 50,
+                                backgroundColor: ColorManager.grayColor,
+                                backgroundImage: FileImage(galleryImage!),
+                              )
+                            : const CircleAvatar(
+                                radius: 50,
+                                backgroundColor: ColorManager.grayColor,
+                                backgroundImage: AssetImage(AssetImages.avatar),
+                              ),
                     Positioned(
                       right: -2,
                       bottom: 2,
@@ -194,29 +189,38 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                 child: DropdownButtonFormField(
                     decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
                         borderSide: BorderSide(color: ColorManager.redColor),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
                         borderSide: BorderSide(color: ColorManager.redColor),
                       ),
                       disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       filled: true,
                       fillColor: ColorManager.whiteColor,
                     ),
-                    validator: (value) => value == null ?  StringsManager.sCity: null,
+                    validator: (value) =>
+                        value == null ? StringsManager.sCity : null,
                     dropdownColor: ColorManager.whiteColor,
                     hint: const Text(StringsManager.sCity),
                     value: selectedCity,
@@ -225,8 +229,7 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                         selectedCity = newValue!;
                       });
                     },
-                    items: cities
-                ),
+                    items: cities),
               ),
               buildSpaceVertical(2.h),
 
@@ -235,29 +238,38 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                 child: DropdownButtonFormField(
                     decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
                         borderSide: BorderSide(color: ColorManager.redColor),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
                         borderSide: BorderSide(color: ColorManager.redColor),
                       ),
                       disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       filled: true,
                       fillColor: ColorManager.whiteColor,
                     ),
-                    validator: (value) => value == null ?  StringsManager.sProvince: null,
+                    validator: (value) =>
+                        value == null ? StringsManager.sProvince : null,
                     dropdownColor: ColorManager.whiteColor,
                     hint: const Text(StringsManager.sProvince),
                     value: selectedProvince,
@@ -266,8 +278,7 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                         selectedProvince = newValue!;
                       });
                     },
-                    items: provinces
-                ),
+                    items: provinces),
               ),
               buildSpaceVertical(2.h),
 
@@ -276,29 +287,38 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                 child: DropdownButtonFormField(
                     decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
                         borderSide: BorderSide(color: ColorManager.redColor),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
                         borderSide: BorderSide(color: ColorManager.redColor),
                       ),
                       disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       filled: true,
                       fillColor: ColorManager.whiteColor,
                     ),
-                    validator: (value) => value == null ?  StringsManager.sDistrict: null,
+                    validator: (value) =>
+                        value == null ? StringsManager.sDistrict : null,
                     dropdownColor: ColorManager.whiteColor,
                     hint: const Text(StringsManager.sDistrict),
                     value: selectedDistrict,
@@ -307,8 +327,7 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                         selectedDistrict = newValue!;
                       });
                     },
-                    items: cities
-                ),
+                    items: cities),
               ),
               buildSpaceVertical(2.h),
 
@@ -317,29 +336,38 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                 child: DropdownButtonFormField(
                     decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
                         borderSide: BorderSide(color: ColorManager.redColor),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
                         borderSide: BorderSide(color: ColorManager.redColor),
                       ),
                       disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s22)),
+                        borderSide:
+                            BorderSide(color: ColorManager.primaryColor),
                       ),
                       filled: true,
                       fillColor: ColorManager.whiteColor,
                     ),
-                    validator: (value) => value == null ?  StringsManager.sMandi: null,
+                    validator: (value) =>
+                        value == null ? StringsManager.sMandi : null,
                     dropdownColor: ColorManager.whiteColor,
                     hint: const Text(StringsManager.sMandi),
                     value: selectedMandi,
@@ -348,55 +376,74 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                         selectedMandi = newValue!;
                       });
                     },
-                    items: mandees
-                ),
+                    items: mandees),
               ),
               buildSpaceVertical(4.h),
 
               InkWell(
                 onTap: () {
-                  if(_formKey.currentState!.validate()){
+                  if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     formatted = formatter.format(now);
 
-                    if(cameraImage != null){
-                      _profileCompletionController.uploadData(businessNameController.text.trim(), addressController.text.trim(),
-                          emailController.text.trim(), phoneController.text.trim(), ntnController.text.trim(),
-                      selectedCity!, selectedProvince!, selectedDistrict!, selectedMandi!, formatted!, cameraImage!);
-                    }else if(galleryImage != null){
-                      _profileCompletionController.uploadData(businessNameController.text.trim(), addressController.text.trim(),
-                          emailController.text.trim(), phoneController.text.trim(), ntnController.text.trim(),
-                          selectedCity!, selectedProvince!, selectedDistrict!, selectedMandi!, formatted!, galleryImage!);
-                    }else{
+                    if (cameraImage != null) {
+                      _profileCompletionController.uploadData(
+                          businessNameController.text.trim(),
+                          addressController.text.trim(),
+                          emailController.text.trim(),
+                          phoneController.text.trim(),
+                          ntnController.text.trim(),
+                          selectedCity!,
+                          selectedProvince!,
+                          selectedDistrict!,
+                          selectedMandi!,
+                          formatted!,
+                          cameraImage!);
+                    } else if (galleryImage != null) {
+                      _profileCompletionController.uploadData(
+                          businessNameController.text.trim(),
+                          addressController.text.trim(),
+                          emailController.text.trim(),
+                          phoneController.text.trim(),
+                          ntnController.text.trim(),
+                          selectedCity!,
+                          selectedProvince!,
+                          selectedDistrict!,
+                          selectedMandi!,
+                          formatted!,
+                          galleryImage!);
+                    } else {
                       errorToast(StringsManager.error, StringsManager.noPic);
                     }
-
-
                   }
                 },
                 child: Obx(() {
-                  return  _profileCompletionController.isLoading.isTrue ?
-                  Center(
-                    child: Container(
-                        height: 7.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(AppSize.s26),
-                          color: ColorManager.primaryColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(AppSize.s0_5),
-                              spreadRadius: 2,
-                              blurRadius: 7,
-                              offset: const Offset(0, 2), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: const Center(child: CupertinoActivityIndicator())),
-                  )
+                  return _profileCompletionController.isLoading.isTrue
+                      ? Center(
+                          child: Container(
+                              height: 7.h,
+                              width: 60.w,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s26),
+                                color: ColorManager.primaryColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color:
+                                        Colors.grey.withOpacity(AppSize.s0_5),
+                                    spreadRadius: 2,
+                                    blurRadius: 7,
+                                    offset: const Offset(
+                                        0, 2), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: const Center(
+                                  child: CupertinoActivityIndicator())),
+                        )
                       : const LargeButton(
-                      title:  StringsManager.continued,
-                      color: ColorManager.primaryColor);
+                          title: StringsManager.continued,
+                          color: ColorManager.primaryColor);
                 }),
               ),
 
@@ -408,12 +455,12 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
     );
   }
 
-  imagePickerDialog(){
+  imagePickerDialog() {
     Get.bottomSheet(
       Container(
           height: 17.h,
           color: ColorManager.primaryColor,
-          child:Column(
+          child: Column(
             children: [
               buildSpaceVertical(2.h),
               Padding(
@@ -426,8 +473,10 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.add_a_photo, size: 4.h, color: ColorManager.whiteColor),
-                      textStyle2(StringsManager.camera, TextAlign.right, ColorManager.whiteColor),
+                      Icon(Icons.add_a_photo,
+                          size: 4.h, color: ColorManager.whiteColor),
+                      textStyle2(StringsManager.camera, TextAlign.right,
+                          ColorManager.whiteColor),
                     ],
                   ),
                 ),
@@ -445,16 +494,17 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.add_photo_alternate_outlined, size: 4.h, color: ColorManager.whiteColor),
-                      textStyle2(StringsManager.gallery, TextAlign.right, ColorManager.whiteColor),
+                      Icon(Icons.add_photo_alternate_outlined,
+                          size: 4.h, color: ColorManager.whiteColor),
+                      textStyle2(StringsManager.gallery, TextAlign.right,
+                          ColorManager.whiteColor),
                     ],
                   ),
                 ),
               ),
               buildSpaceVertical(2.h),
             ],
-          )
-      ),
+          )),
       enableDrag: false,
     );
   }

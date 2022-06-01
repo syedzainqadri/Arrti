@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 import 'package:apni_mandi/utils/constants/strings_manager.dart';
 import 'package:apni_mandi/utils/helpers/helper.dart';
