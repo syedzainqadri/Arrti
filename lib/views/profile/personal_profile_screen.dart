@@ -1,5 +1,3 @@
-
-
 import 'package:apni_mandi/views/profile/update_personal_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +10,6 @@ import '../../utils/constants/values_manager.dart';
 import '../../utils/helpers/helper.dart';
 import '../../utils/helpers/text_helper.dart';
 
-
 class PersonalProfileScreen extends StatefulWidget {
   const PersonalProfileScreen({Key? key}) : super(key: key);
 
@@ -21,10 +18,8 @@ class PersonalProfileScreen extends StatefulWidget {
 }
 
 class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
-
   final ProfileController _profileController = Get.put(ProfileController());
   PersonalInfoModel? personalInfoModel;
-
 
   @override
   void initState() {
@@ -32,154 +27,188 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
     getData();
   }
 
-  getData() async{
+  getData() async {
     personalInfoModel = await _profileController.getPersonalData();
-    setState(() { });
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: _profileController.isLoading.isTrue
+          ? const Center(child: CircularProgressIndicator())
+          : personalInfoModel != null
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      buildSpaceVertical(3.h),
+                      personalInfoModel!.profileImage != null
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                buildSpaceHorizontal(20.w),
+                                CircleAvatar(
+                                  radius: 60,
+                                  backgroundColor: ColorManager.grayColor,
+                                  backgroundImage: NetworkImage(
+                                      personalInfoModel!.profileImage ?? ''),
+                                ),
+                                buildSpaceHorizontal(20.w),
+                                IconButton(
+                                  onPressed: () {
+                                    Get.to(UpdatePersonalProfile(
+                                        personalInfoModel: personalInfoModel!));
+                                  },
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: ColorManager.primaryColor,
+                                    size: 30,
+                                  ),
+                                )
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                buildSpaceHorizontal(20.w),
+                                const CircleAvatar(
+                                  radius: 60,
+                                  backgroundColor: ColorManager.grayColor,
+                                  backgroundImage:
+                                      AssetImage(AssetImages.avatar),
+                                ),
+                                buildSpaceHorizontal(20.w),
+                                IconButton(
+                                  onPressed: () {
+                                    Get.to(UpdatePersonalProfile(
+                                        personalInfoModel: personalInfoModel!));
+                                  },
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: ColorManager.primaryColor,
+                                    size: 30,
+                                  ),
+                                )
+                              ],
+                            ),
 
-      body:  _profileController.isLoading.isTrue ? const Center(child: CircularProgressIndicator()) :
-      personalInfoModel != null ?
-      SingleChildScrollView(
-        child: Column(
-          children: [
-            buildSpaceVertical(3.h),
-            personalInfoModel!.profileImage != null ?
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                buildSpaceHorizontal(20.w),
-                CircleAvatar(
-                  radius: 60,
-                  backgroundColor: ColorManager.grayColor,
-                  backgroundImage: NetworkImage(personalInfoModel!.profileImage ?? ''),
-                ),
-                buildSpaceHorizontal(20.w),
-                IconButton(
-                    onPressed: () {
-                      Get.to(UpdatePersonalProfile(personalInfoModel: personalInfoModel!));
-                    },
-                    icon: const Icon(Icons.edit, color: ColorManager.primaryColor, size: 30,),
+                      buildSpaceVertical(3.h),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Personal Name:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2(
+                                "${personalInfoModel!.firstName}  ${personalInfoModel!.lastName} ",
+                                TextAlign.center,
+                                ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Personal No:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${personalInfoModel!.phoneNo}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: textStyle3("Personal Email : ",
+                                  TextAlign.center, ColorManager.primaryColor),
+                            ),
+                            textStyle2("${personalInfoModel!.email}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Personal CNIC", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${personalInfoModel!.cnicNo}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Personal City:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${personalInfoModel!.city}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Personal Address:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${personalInfoModel!.address}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Personal Province:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${personalInfoModel!.province}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+
+                      // buildSpaceVertical(10.h),
+                    ],
+                  ),
                 )
-              ],
-            )
-                :
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                buildSpaceHorizontal(20.w),
-                const CircleAvatar(
-                  radius: 60,
-                  backgroundColor: ColorManager.grayColor,
-                  backgroundImage: AssetImage(AssetImages.avatar),
-                ),
-
-                buildSpaceHorizontal(20.w),
-                IconButton(
-                  onPressed: () {
-                    Get.to(UpdatePersonalProfile(personalInfoModel: personalInfoModel!));
-                  },
-                  icon: const Icon(Icons.edit, color: ColorManager.primaryColor, size: 30,),
-                )
-              ],
-            ),
-
-            buildSpaceVertical(3.h),
-
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textStyle3("Personal Name:", TextAlign.center, ColorManager.primaryColor),
-                  textStyle2("${personalInfoModel!.firstName}  ${personalInfoModel!.lastName} ", TextAlign.center, ColorManager.primaryColor),
-                ],
-              ),
-            ),
-
-            buildSpaceVertical(2.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textStyle3("Personal No:", TextAlign.center, ColorManager.primaryColor),
-                  textStyle2("${personalInfoModel!.phoneNo}", TextAlign.center, ColorManager.primaryColor),
-                ],
-              ),
-            ),
-
-            buildSpaceVertical(2.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textStyle3("Personal Email", TextAlign.center, ColorManager.primaryColor),
-                  textStyle2("${personalInfoModel!.email}", TextAlign.center, ColorManager.primaryColor),
-                ],
-              ),
-            ),
-
-            buildSpaceVertical(2.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textStyle3("Personal CNIC", TextAlign.center, ColorManager.primaryColor),
-                  textStyle2("${personalInfoModel!.cnicNo}", TextAlign.center, ColorManager.primaryColor),
-                ],
-              ),
-            ),
-
-            buildSpaceVertical(2.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textStyle3("Personal City:", TextAlign.center, ColorManager.primaryColor),
-                  textStyle2("${personalInfoModel!.city}", TextAlign.center, ColorManager.primaryColor),
-                ],
-              ),
-            ),
-
-            buildSpaceVertical(2.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textStyle3("Personal Address:", TextAlign.center, ColorManager.primaryColor),
-                  textStyle2("${personalInfoModel!.address}", TextAlign.center, ColorManager.primaryColor),
-                ],
-              ),
-            ),
-
-            buildSpaceVertical(2.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textStyle3("Personal Province:", TextAlign.center, ColorManager.primaryColor),
-                  textStyle2("${personalInfoModel!.province}", TextAlign.center, ColorManager.primaryColor),
-                ],
-              ),
-            ),
-
-
-            // buildSpaceVertical(10.h),
-
-          ],
-        ),
-      ): Center(child: textStyle3("No Personal Info Available", TextAlign.center, ColorManager.primaryColor)),
+              : Center(
+                  child: textStyle3("No Personal Info Available",
+                      TextAlign.center, ColorManager.primaryColor)),
     );
   }
-
-
 }

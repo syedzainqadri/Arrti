@@ -180,7 +180,7 @@ class _UpdateBusinessProfileState extends State<UpdateBusinessProfile> {
                 controller: addressController,
                 hintName: StringsManager.address,
                 icon: Icons.home,
-                inputLines: 4,
+                //inputLines: 4,
                 inputLength: 300,
               ),
               // buildSpaceVertical(1.h),
