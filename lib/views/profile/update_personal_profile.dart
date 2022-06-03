@@ -173,6 +173,7 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
                 hintName: StringsManager.email,
                 icon: Icons.email,
                 inputType: TextInputType.emailAddress,
+                inputLength: 30,
               ),
               // buildSpaceVertical(2.h),
 
@@ -194,43 +195,47 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
               ),
               // buildSpaceVertical(2.h),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-                child: DropdownButtonFormField(
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
+              Container(
+                height: 70,
+                margin: EdgeInsets.only(top: 10),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+                  child: DropdownButtonFormField(
+                      decoration: const InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                          borderSide: BorderSide(color: ColorManager.primaryColor),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                          borderSide: BorderSide(color: ColorManager.primaryColor),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                          borderSide: BorderSide(color: ColorManager.redColor),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                          borderSide: BorderSide(color: ColorManager.redColor),
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
+                          borderSide: BorderSide(color: ColorManager.primaryColor),
+                        ),
+                        filled: true,
+                        fillColor: ColorManager.whiteColor,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      filled: true,
-                      fillColor: ColorManager.whiteColor,
-                    ),
-                    validator: (value) => value == null ?  StringsManager.sProvince: null,
-                    dropdownColor: ColorManager.whiteColor,
-                    hint: const Text(StringsManager.sProvince),
-                    value: selectedProvince,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedProvince = newValue!;
-                      });
-                    },
-                    items: provinces
+                      validator: (value) => value == null ?  StringsManager.sProvince: null,
+                      dropdownColor: ColorManager.whiteColor,
+                      hint: const Text(StringsManager.sProvince),
+                      value: selectedProvince,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedProvince = newValue!;
+                        });
+                      },
+                      items: provinces
+                  ),
                 ),
               ),
               buildSpaceVertical(4.h),

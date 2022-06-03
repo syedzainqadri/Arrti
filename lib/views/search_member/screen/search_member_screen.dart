@@ -1,19 +1,16 @@
 import 'package:apni_mandi/controllers/search_controller.dart';
-import 'package:apni_mandi/models/personal_info_model.dart';
 import 'package:apni_mandi/utils/constants/color_manager.dart';
 import 'package:apni_mandi/utils/constants/strings_manager.dart';
 import 'package:apni_mandi/utils/constants/values_manager.dart';
 import 'package:apni_mandi/utils/helpers/helper.dart';
 import 'package:apni_mandi/utils/helpers/text_helper.dart';
-import 'package:apni_mandi/widgets/text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
 class SearchMemberScreen extends StatefulWidget {
-  SearchMemberScreen({Key? key}) : super(key: key);
+  const SearchMemberScreen({Key? key}) : super(key: key);
 
   @override
   State<SearchMemberScreen> createState() => _SearchMemberScreenState();
@@ -34,8 +31,8 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
           buildSearchField(),
           buildSpaceVertical(3.h),
           Expanded(
-            child: snapshot != null ?
-            ListView.separated(
+            child: snapshot != null
+                ? ListView.separated(
                     itemCount: snapshot!.docs.length,
                     itemBuilder: (context, index) {
                       return buildSearchedCard(index);
@@ -63,21 +60,25 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-          child: show ?
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              textStyle2(StringsManager.businessName, TextAlign.center, ColorManager.primaryColor),
-              textStyle2("${snapshot!.docs[index].get('businessName')}", TextAlign.center, ColorManager.primaryColor),
-            ],
-          )
-          :Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              textStyle2(StringsManager.name, TextAlign.center, ColorManager.primaryColor),
-              textStyle2("${snapshot!.docs[index].get('firstName')}", TextAlign.center, ColorManager.primaryColor),
-            ],
-          ),
+          child: show
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    textStyle2(StringsManager.businessName, TextAlign.center,
+                        ColorManager.primaryColor),
+                    textStyle2("${snapshot!.docs[index].get('businessName')}",
+                        TextAlign.center, ColorManager.primaryColor),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    textStyle2(StringsManager.name, TextAlign.center,
+                        ColorManager.primaryColor),
+                    textStyle2("${snapshot!.docs[index].get('firstName')}",
+                        TextAlign.center, ColorManager.primaryColor),
+                  ],
+                ),
         ),
         buildSpaceVertical(1.h),
         Padding(
@@ -147,17 +148,19 @@ class _SearchMemberScreenState extends State<SearchMemberScreen> {
                     val.searchBusinessData(searchController.text).then((value) {
                       snapshot = value;
                       show = true;
-                      setState(() { });
-                      if(snapshot!.docs.isEmpty){
-                        val.searchPersonalData(searchController.text).then((values) {
+                      setState(() {});
+                      if (snapshot!.docs.isEmpty) {
+                        val
+                            .searchPersonalData(searchController.text)
+                            .then((values) {
                           snapshot = values;
-                          setState(() { });
+                          setState(() {});
                         });
                       }
-
                     });
                   },
-                  child: const Icon(Icons.search, color: ColorManager.primaryColor));
+                  child: const Icon(Icons.search,
+                      color: ColorManager.primaryColor));
             },
           ),
           hintText: StringsManager.search,

@@ -1,7 +1,7 @@
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
@@ -15,12 +15,13 @@ import '../../widgets/large_button.dart';
 import '../../widgets/text_field.dart';
 
 class UpgradeUserDialog extends StatelessWidget {
-   UpgradeUserDialog({Key? key}) : super(key: key);
+  UpgradeUserDialog({Key? key}) : super(key: key);
 
   final phoneController = TextEditingController();
   final transIDController = TextEditingController();
 
-   final AddPaymentController paymentController = Get.put(AddPaymentController());
+  final AddPaymentController paymentController =
+      Get.put(AddPaymentController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,10 @@ class UpgradeUserDialog extends StatelessWidget {
         child: Column(
           children: [
             buildSpaceVertical(2.h),
-            textStyle2("To Upgrade to Premium account\nSend Rs.1000 to 03129834567 ", TextAlign.center, ColorManager.grayColor),
+            textStyle2(
+                "To Upgrade to Premium account\nSend Rs.1000 to 03129834567 ",
+                TextAlign.center,
+                ColorManager.grayColor),
             buildSpaceVertical(2.h),
             GetTextField(
               controller: phoneController,
@@ -54,9 +58,12 @@ class UpgradeUserDialog extends StatelessWidget {
               inputLength: 10,
             ),
             InkWell(
-              onTap: (){
-                if(phoneController.text.isNotEmpty && transIDController.text.isNotEmpty){
-                  paymentController.addPaymentData(phoneController.text, transIDController.text);
+              onTap: () async {
+                if (phoneController.text.isNotEmpty &&
+                    transIDController.text.isNotEmpty) {
+                  paymentController.addPaymentData(
+                      phoneController.text, transIDController.text);
+                  await updateMembershipStatus();
                 }
               },
               child: Center(
@@ -78,28 +85,31 @@ class UpgradeUserDialog extends StatelessWidget {
                     ],
                   ),
                   child: Obx(() {
-                    return  paymentController.isLoading.isTrue ?
-                    Center(
-                      child: Container(
-                          height: 7.h,
-                          width: 60.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSize.s26),
-                            color: ColorManager.primaryColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(AppSize.s0_5),
-                                spreadRadius: 2,
-                                blurRadius: 7,
-                                offset: const Offset(0, 2), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          child: const Center(child: CupertinoActivityIndicator())),
-                    )
+                    return paymentController.isLoading.isTrue
+                        ? Center(
+                            child: Container(
+                                height: 7.h,
+                                width: 60.w,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.circular(AppSize.s26),
+                                  color: ColorManager.primaryColor,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color:
+                                          Colors.grey.withOpacity(AppSize.s0_5),
+                                      spreadRadius: 2,
+                                      blurRadius: 7,
+                                      offset: const Offset(
+                                          0, 2), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: const Center(
+                                    child: CupertinoActivityIndicator())),
+                          )
                         : const LargeButton(
-                        title:  "Upgrade",
-                        color: ColorManager.primaryColor);
+                            title: "Upgrade", color: ColorManager.primaryColor);
                   }),
                 ),
               ),
@@ -108,5 +118,15 @@ class UpgradeUserDialog extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  updateMembershipStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userId = prefs.getString("userId");
+    print(userId);
+    var val = await FirebaseFirestore.instance
+        .collection("usersBusinessData")
+        .doc(userId)
+        .update({'membershipStatus': true});
   }
 }

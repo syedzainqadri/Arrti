@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-
 class LargeButton extends StatelessWidget {
   final String title;
   final Color color;
-  const LargeButton({Key? key, required this.title, required this.color}) : super(key: key);
+  const LargeButton({Key? key, required this.title, required this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 7.h,
+        height: 6.h,
         width: 60.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSize.s26),
