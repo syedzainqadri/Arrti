@@ -1,15 +1,14 @@
-
-import 'package:apni_mandi/utils/constants/strings_manager.dart';
-import 'package:apni_mandi/utils/helpers/firebase_helper.dart';
-import 'package:apni_mandi/utils/helpers/helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthController extends GetxController {
+import '../utils/constants/strings_manager.dart';
+import '../utils/helpers/firebase_helper.dart';
+import '../utils/helpers/helper.dart';
 
+class AuthController extends GetxController {
   var isLoading = false.obs;
   var isGLoading = false.obs;
   var isFLoading = false.obs;
@@ -28,23 +27,27 @@ class AuthController extends GetxController {
       isGLoading.value = true;
       GoogleSignInAccount? googleSignInAccount = await googleSign.signIn();
       if (googleSignInAccount != null) {
-        GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+        GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
         AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
         );
-        _userCredential =  await auth.signInWithCredential(credential).catchError((onErr) {
-          errorToast(StringsManager.error, onErr.toString());
+        _userCredential =
+            await auth.signInWithCredential(credential).catchError((onErr) {
+          var errorToast2 = errorToast;
+          errorToast2(StringsManager.error, onErr.toString());
         });
-        addAuthData(_userCredential!.user!.displayName!, _userCredential!.user!.email!, "");
+        addAuthData(_userCredential!.user!.displayName!,
+            _userCredential!.user!.email!, "");
         prefs.setString("userId", _userCredential!.user!.uid);
-        if(isLogin){
+        if (isLogin) {
           Get.toNamed('/signinSuccess');
-        }else{
+        } else {
           Get.toNamed('/signupSuccess');
         }
         isGLoading.value = false;
-      }else{
+      } else {
         errorToast(StringsManager.error, StringsManager.alreadyLogged);
       }
     } catch (e) {
@@ -56,7 +59,8 @@ class AuthController extends GetxController {
   void register(String name, String email, String password) async {
     try {
       isRLoading.value = true;
-      _userCredential =  await auth.createUserWithEmailAndPassword(email: email, password: password);
+      _userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       addAuthData(name, email, password);
       isRLoading.value = false;
       Get.toNamed('/signupSuccess');
@@ -74,7 +78,8 @@ class AuthController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       isLoading.value = true;
-      _userCredential =  await auth.signInWithEmailAndPassword(email: email, password: password);
+      _userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
       prefs.setString("userId", _userCredential!.user!.uid);
       isLoading.value = false;
       Get.toNamed('/signinSuccess');
@@ -88,18 +93,17 @@ class AuthController extends GetxController {
     }
   }
 
-  void sendResetMail(String email) async{
+  void sendResetMail(String email) async {
     isFLoading.value = true;
-    try{
+    try {
       await auth.sendPasswordResetEmail(email: email);
       successToast(StringsManager.success, StringsManager.successEmail);
       Get.toNamed('/authView');
-    }catch(e){
+    } catch (e) {
       errorToast(StringsManager.error, e.toString());
       isFLoading.value = false;
     }
   }
-
 
   void signOut() {
     try {
@@ -119,12 +123,14 @@ class AuthController extends GetxController {
 
   void addAuthData(String name, String email, String password) async {
     user = _userCredential!.user;
-    await FirebaseFirestore.instance.collection('usersAuthData').doc(user!.uid).set({
+    await FirebaseFirestore.instance
+        .collection('usersAuthData')
+        .doc(user!.uid)
+        .set({
       "id": user!.uid,
       "name": name,
       "email": email,
       "password": password,
     });
   }
-
 }

@@ -1,9 +1,10 @@
-import 'package:apni_mandi/utils/constants/color_manager.dart';
-import 'package:apni_mandi/utils/constants/font_manager.dart';
-import 'package:apni_mandi/utils/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+
+import '../utils/constants/color_manager.dart';
+import '../utils/constants/font_manager.dart';
+import '../utils/constants/values_manager.dart';
 
 class LargeButton extends StatelessWidget {
   final String title;

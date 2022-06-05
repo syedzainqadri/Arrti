@@ -1,13 +1,14 @@
-import 'package:apni_mandi/controllers/search_controller.dart';
-import 'package:apni_mandi/utils/constants/color_manager.dart';
-import 'package:apni_mandi/utils/constants/strings_manager.dart';
-import 'package:apni_mandi/utils/constants/values_manager.dart';
-import 'package:apni_mandi/utils/helpers/helper.dart';
-import 'package:apni_mandi/utils/helpers/text_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/search_controller.dart';
+import '../../../utils/constants/color_manager.dart';
+import '../../../utils/constants/strings_manager.dart';
+import '../../../utils/constants/values_manager.dart';
+import '../../../utils/helpers/helper.dart';
+import '../../../utils/helpers/text_helper.dart';
 
 class SearchMemberScreen extends StatefulWidget {
   const SearchMemberScreen({Key? key}) : super(key: key);

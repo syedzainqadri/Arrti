@@ -1,16 +1,20 @@
-import 'package:apni_mandi/controllers/profile_controller.dart';
-import 'package:apni_mandi/models/personal_info_model.dart';
-import 'package:apni_mandi/utils/constants/color_manager.dart';
-import 'package:apni_mandi/utils/constants/values_manager.dart';
-import 'package:apni_mandi/utils/helpers/helper.dart';
-import 'package:apni_mandi/views/profile/business_profile_screen.dart';
-import 'package:apni_mandi/views/profile/personal_profile_screen.dart';
-import 'package:apni_mandi/views/profile/upgrade_user_dialog.dart';
+import 'package:mandi_admin/views/profile/business_profile_screen.dart';
+import 'package:mandi_admin/views/profile/personal_profile_screen.dart';
+import 'package:mandi_admin/views/profile/upgrade_user_dialog.dart';
+
+import '../../../controllers/search_controller.dart';
+import '../../../utils/constants/color_manager.dart';
+import '../../../utils/constants/strings_manager.dart';
+import '../../../utils/constants/values_manager.dart';
+import '../../../utils/helpers/helper.dart';
+import '../../../utils/helpers/text_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import '../../controllers/profile_controller.dart';
 import '../../models/business_info_model.dart';
+import '../../models/personal_info_model.dart';
 import '../../utils/helpers/text_helper.dart';
 import '../../widgets/large_button.dart';
 import 'package:get/get.dart';
@@ -107,28 +111,28 @@ class _WaitingScreenState extends State<WaitingScreen>
           buildSpaceVertical(4.h),
         ],
       ),
-      bottomSheet: SizedBox(
-        height: 8.h,
-        width: double.infinity,
-        child: businessInfoModel != null
-            ? businessInfoModel!.membershipStatus != true
-                ? InkWell(
-                    onTap: () {
-                      showDialog(
-                        barrierColor: Colors.black26,
-                        context: context,
-                        builder: (context) {
-                          return UpgradeUserDialog();
-                        },
-                      );
-                    },
-                    child: const LargeButton(
-                        title: "Upgrade to Premium",
-                        color: ColorManager.primaryColor),
-                  )
-                : const SizedBox()
-            : const SizedBox(),
-      ),
+      // bottomSheet: SizedBox(
+      //   height: 8.h,
+      //   width: double.infinity,
+      //   child: businessInfoModel != null
+      //       ? businessInfoModel!.membershipStatus != true
+      //           ? InkWell(
+      //               onTap: () {
+      //                 showDialog(
+      //                   barrierColor: Colors.black26,
+      //                   context: context,
+      //                   builder: (context) {
+      //                     return UpgradeUserDialog();
+      //                   },
+      //                 );
+      //               },
+      //               child: const LargeButton(
+      //                   title: "Upgrade to Premium",
+      //                   color: ColorManager.primaryColor),
+      //             )
+      //           : const SizedBox()
+      //       : const SizedBox(),
+      // ),
     );
   }
 
@@ -139,19 +143,15 @@ class _WaitingScreenState extends State<WaitingScreen>
       backgroundColor: ColorManager.whiteColor,
       elevation: 0.5,
       actions: [
-        businessInfoModel != null
-            ? businessInfoModel!.membershipStatus != false
-                ? IconButton(
-                    onPressed: () async {
-                      Get.toNamed('/allUsers');
-                    },
-                    icon: const Icon(
-                      Icons.search,
-                      color: ColorManager.primaryColor,
-                    ),
-                  )
-                : SizedBox()
-            : SizedBox()
+        IconButton(
+          onPressed: () async {
+            Get.toNamed('/allUsers');
+          },
+          icon: const Icon(
+            Icons.search,
+            color: ColorManager.primaryColor,
+          ),
+        )
       ],
     );
   }

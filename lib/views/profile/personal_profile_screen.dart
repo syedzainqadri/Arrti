@@ -1,6 +1,6 @@
-import 'package:apni_mandi/views/profile/update_personal_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mandi_admin/views/profile/update_personal_profile.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/profile_controller.dart';
 import '../../models/personal_info_model.dart';

@@ -1,6 +1,6 @@
-import 'package:apni_mandi/views/profile/update_business_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mandi_admin/views/profile/update_business_profile.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/profile_controller.dart';
 import '../../models/business_info_model.dart';
@@ -93,9 +93,7 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                                 )
                               ],
                             ),
-
                       buildSpaceVertical(3.h),
-
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p20),
@@ -109,7 +107,6 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                           ],
                         ),
                       ),
-
                       buildSpaceVertical(2.h),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -124,7 +121,6 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                           ],
                         ),
                       ),
-
                       buildSpaceVertical(2.h),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -139,8 +135,70 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                           ],
                         ),
                       ),
-
                       buildSpaceVertical(2.h),
+                      businessInfoModel!.phoneNo != null
+                          ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  textStyle3("Phone Number ", TextAlign.center,
+                                      ColorManager.primaryColor),
+                                  textStyle2(
+                                      "${businessInfoModel!.phoneNo}",
+                                      TextAlign.center,
+                                      ColorManager.primaryColor),
+                                ],
+                              ),
+                            )
+                          : SizedBox(),
+                      businessInfoModel!.phoneNo != ""
+                          ? buildSpaceVertical(2.h)
+                          : SizedBox(),
+                      businessInfoModel!.phoneNo01 != null
+                          ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  textStyle3("Phone Number ", TextAlign.center,
+                                      ColorManager.primaryColor),
+                                  textStyle2(
+                                      "${businessInfoModel!.phoneNo01}",
+                                      TextAlign.center,
+                                      ColorManager.primaryColor),
+                                ],
+                              ),
+                            )
+                          : SizedBox(),
+                      businessInfoModel!.phoneNo01 != null
+                          ? buildSpaceVertical(2.h)
+                          : SizedBox(),
+                      businessInfoModel!.phoneNo02 != null
+                          ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  textStyle3("Phone Number", TextAlign.center,
+                                      ColorManager.primaryColor),
+                                  textStyle2(
+                                      "${businessInfoModel!.phoneNo02}",
+                                      TextAlign.center,
+                                      ColorManager.primaryColor),
+                                ],
+                              ),
+                            )
+                          : SizedBox(),
+                      businessInfoModel!.phoneNo02 != null
+                          ? buildSpaceVertical(2.h)
+                          : SizedBox(),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p20),
@@ -154,7 +212,37 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                           ],
                         ),
                       ),
-
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Business Country:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            Expanded(
+                                child: textStyle2(
+                                    "${businessInfoModel!.district}",
+                                    TextAlign.center,
+                                    ColorManager.primaryColor)),
+                          ],
+                        ),
+                      ),
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Business State:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${businessInfoModel!.province}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
                       buildSpaceVertical(2.h),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -164,12 +252,14 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                           children: [
                             textStyle3("Business City:", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2("${businessInfoModel!.city}",
-                                TextAlign.center, ColorManager.primaryColor),
+                            Expanded(
+                                child: textStyle2(
+                                    "${businessInfoModel!.city}",
+                                    TextAlign.center,
+                                    ColorManager.primaryColor)),
                           ],
                         ),
                       ),
-
                       buildSpaceVertical(2.h),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -187,7 +277,6 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                           ],
                         ),
                       ),
-
                       buildSpaceVertical(2.h),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -195,52 +284,15 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            textStyle3("Business Province:", TextAlign.center,
+                            textStyle3("Business Mandi:", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2("${businessInfoModel!.province}",
+                            textStyle2("${businessInfoModel!.mandiName}",
                                 TextAlign.center, ColorManager.primaryColor),
                           ],
                         ),
                       ),
-
+                      buildSpaceVertical(4.h),
                       buildSpaceVertical(2.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            textStyle3("Membership Status:", TextAlign.center,
-                                ColorManager.primaryColor),
-                            Container(
-                              height: 6.h,
-                              width: 20.w,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(AppSize.s20),
-                                color: businessInfoModel!.membershipStatus!
-                                    ? ColorManager.greenColor
-                                    : ColorManager.redColor,
-                              ),
-                              child: Center(
-                                  child: textStyle2(
-                                      businessInfoModel!.membershipStatus!
-                                          ? "Active"
-                                          : "Inactive",
-                                      TextAlign.center,
-                                      ColorManager.whiteColor)),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      // buildSpaceVertical(10.h),
-                      // InkWell(
-                      //   onTap: () => Get.toNamed('/searchView'),
-                      //   child: const LargeButton(
-                      //       title:  StringsManager.searchMember,
-                      //       color: ColorManager.primaryColor),
-                      // )
                     ],
                   ),
                 )
