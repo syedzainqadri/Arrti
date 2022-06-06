@@ -135,8 +135,10 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                           ],
                         ),
                       ),
-                      buildSpaceVertical(2.h),
-                      businessInfoModel!.phoneNo != null
+                      businessInfoModel!.phoneNo != ""
+                          ? buildSpaceVertical(2.h)
+                          : SizedBox(),
+                      businessInfoModel!.phoneNo != ""
                           ? Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: AppPadding.p20),
@@ -153,11 +155,11 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       businessInfoModel!.phoneNo != ""
                           ? buildSpaceVertical(2.h)
-                          : SizedBox(),
-                      businessInfoModel!.phoneNo01 != null
+                          : const SizedBox(),
+                      businessInfoModel!.phoneNo01 != ""
                           ? Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: AppPadding.p20),
@@ -165,7 +167,9 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  textStyle3("Phone Number ", TextAlign.center,
+                                  textStyle3(
+                                      "Phone Number 02 ",
+                                      TextAlign.center,
                                       ColorManager.primaryColor),
                                   textStyle2(
                                       "${businessInfoModel!.phoneNo01}",
@@ -174,10 +178,10 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       businessInfoModel!.phoneNo01 != null
                           ? buildSpaceVertical(2.h)
-                          : SizedBox(),
+                          : const SizedBox(),
                       businessInfoModel!.phoneNo02 != null
                           ? Padding(
                               padding: const EdgeInsets.symmetric(
@@ -195,10 +199,10 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       businessInfoModel!.phoneNo02 != null
                           ? buildSpaceVertical(2.h)
-                          : SizedBox(),
+                          : const SizedBox(),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p20),

@@ -17,38 +17,17 @@ class AllUsers extends StatefulWidget {
 class _AllUsersState extends State<AllUsers> {
   final TextEditingController _searchControler = TextEditingController();
   List<Map> searchResult = [];
-  //List<Map> searchcityList = [];
-
   List<Map> filterdResult = [];
+  List<Map> searchResultcity = [];
 
   String? selectedCity;
   bool isloading = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     searchResult.clear;
-   // searchcityList.clear();
     searchAll();
-    searchAllwithcity();
-  }
-
-  void searchAllwithcity() async {
-    setState(() {
-      isloading = true;
-    });
-
-    await FirebaseFirestore.instance
-        .collection("usersBusinessData")
-        .get()
-        .then((value) {
-      for (var alluser in value.docs) {
-       // searchcityList.add(alluser.data());
-      }
-      setState(() {
-        isloading = false;
-      });
-    });
+    // searchAllwithcity();
   }
 
   void searchAll() async {
@@ -69,14 +48,33 @@ class _AllUsersState extends State<AllUsers> {
     });
   }
 
+  void onSearchcity() async {
+    setState(() {
+      isloading = true;
+    });
+
+    await FirebaseFirestore.instance
+        .collection("usersBusinessData")
+        .where('city', isEqualTo: _searchControler.text.trim())
+        .get()
+        .then((value) {
+      for (var alluser in value.docs) {
+        searchResultcity.add(alluser.data());
+      }
+      setState(() {
+        isloading = false;
+      });
+    });
+  }
+
   void onSearch() async {
     setState(() {
       isloading = true;
     });
 
     await FirebaseFirestore.instance
-        .collection("usersAuthData")
-        .where('name', isEqualTo: _searchControler.text.trim())
+        .collection("usersBusinessData")
+        .where('businessName', isEqualTo: _searchControler.text.trim())
         .get()
         .then((value) {
       for (var alluser in value.docs) {
@@ -187,59 +185,9 @@ class _AllUsersState extends State<AllUsers> {
                     }),
               ),
             ),
-            // Container(
-            //   height: 55,
-            //   child: Padding(
-            //     padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-            //     child: DropdownButtonFormField(
-            //         decoration: const InputDecoration(
-            //           enabledBorder: OutlineInputBorder(
-            //             borderRadius:
-            //                 BorderRadius.all(Radius.circular(AppSize.s22)),
-            //             borderSide:
-            //                 BorderSide(color: ColorManager.primaryColor),
-            //           ),
-            //           focusedBorder: OutlineInputBorder(
-            //             borderRadius:
-            //                 BorderRadius.all(Radius.circular(AppSize.s22)),
-            //             borderSide:
-            //                 BorderSide(color: ColorManager.primaryColor),
-            //           ),
-            //           errorBorder: OutlineInputBorder(
-            //             borderRadius:
-            //                 BorderRadius.all(Radius.circular(AppSize.s22)),
-            //             borderSide: BorderSide(color: ColorManager.redColor),
-            //           ),
-            //           focusedErrorBorder: OutlineInputBorder(
-            //             borderRadius:
-            //                 BorderRadius.all(Radius.circular(AppSize.s22)),
-            //             borderSide: BorderSide(color: ColorManager.redColor),
-            //           ),
-            //           disabledBorder: OutlineInputBorder(
-            //             borderRadius:
-            //                 BorderRadius.all(Radius.circular(AppSize.s22)),
-            //             borderSide:
-            //                 BorderSide(color: ColorManager.primaryColor),
-            //           ),
-            //           filled: true,
-            //           fillColor: ColorManager.whiteColor,
-            //         ),
-            //         validator: (value) =>
-            //             value == null ? StringsManager.sCity : null,
-            //         dropdownColor: ColorManager.whiteColor,
-            //         hint: const Text("Select city"),
-            //         value: selectedCity,
-            //         onChanged: (String? newValue) {
-            //           setState(() {
-            //             selectedCity = newValue!;
-            //           });
-            //         },
-            //         items: cities),
-            //   ),
-            // ),
             Container(
               height: 60,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               width: Get.width / 2,
               child: Expanded(
                 child: TextButton(
@@ -248,9 +196,9 @@ class _AllUsersState extends State<AllUsers> {
                           MaterialStateProperty.all(ColorManager.primaryColor)),
                   onPressed: () {
                     searchResult.clear();
-                   // searchcityList.clear();
+                    // searchcityList.clear();
                     onSearch();
-
+                    onSearchcity();
                   },
                   child: textStyle2("search", TextAlign.center, Colors.white),
                 ),
@@ -276,19 +224,30 @@ class _AllUsersState extends State<AllUsers> {
                                             searchResult[index]['id']),
                                   ));
                             },
-                            child: selectedCity == null
-                                ? ListTile(
-                                    title: Text(
-                                      searchResult[index]['businessName'].toString(),
-                                      style: const TextStyle(
-                                          color: ColorManager.primaryColor,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    subtitle: Text(searchResult[index]['email']
-                                        .toString()),
-                                  )
+                            child: _searchControler.text != null
+                                ? selectedCity == null
+                                    ? searchResult != null
+                                        ? ListTile(
+                                            title: Text(
+                                              searchResult[index]
+                                                      ['businessName']
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                  color:
+                                                      ColorManager.primaryColor,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            subtitle: Text(searchResult[index]
+                                                    ['email']
+                                                .toString()),
+                                          )
+                                        : const Center(
+                                            child: Text(
+                                            "No user found",
+                                          ))
+                                    : SizedBox()
                                 : selectedCity.toString().trim() ==
-                                searchResult[index]['city']
+                                        searchResult[index]['city']
                                     ? ListTile(
                                         title: Text(
                                           searchResult[index]['businessName']
