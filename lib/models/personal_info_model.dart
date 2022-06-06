@@ -8,6 +8,7 @@ class PersonalInfoModel {
   String? phoneNo;
   String? cnicNo;
   String? city;
+  String?country;
   String? address;
   String? province;
   String? profileImage;
@@ -20,6 +21,7 @@ class PersonalInfoModel {
       this.phoneNo,
       this.cnicNo,
       this.city,
+        this.country,
       this.address,
       this.province,
       this.profileImage});
@@ -33,6 +35,7 @@ class PersonalInfoModel {
       phoneNo: doc.get('phoneNo'),
       cnicNo: doc.get('cnicNo'),
       city: doc.get('city'),
+        country:doc.get('country'),
       address: doc.get('address'),
       province: doc.get('province'),
       profileImage: doc.get('image'),
@@ -47,6 +50,7 @@ class PersonalInfoModel {
     phoneNo = json['phoneNo'];
     cnicNo = json['cnicNo'];
     city = json['city'];
+    country=json['city'];
     address = json['address'];
     province = json['province'];
     profileImage = json['image'];

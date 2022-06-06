@@ -1,10 +1,11 @@
 import 'dart:io';
+import 'package:csc_picker/csc_picker.dart';
+
 import '../../../controllers/personal_profile_completion_controller.dart';
 import '../../../utils/constants/assets_manager.dart';
 import '../../../utils/constants/color_manager.dart';
 import '../../../utils/constants/strings_manager.dart';
 import '../../../utils/constants/values_manager.dart';
-import '../../../utils/helpers/citeis_ProvincesList.dart';
 import '../../../utils/helpers/helper.dart';
 import '../../../utils/helpers/text_helper.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,8 +34,9 @@ class _PersonalProfileCompletionState extends State<PersonalProfileCompletion> {
   final addressController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  String? selectedCity;
-  String? selectedPro;
+  String? cityValue;
+  String? stateValue;
+  String? countryValue;
 
   File? galleryImage;
   File? cameraImage;
@@ -153,72 +155,165 @@ class _PersonalProfileCompletionState extends State<PersonalProfileCompletion> {
               ),
               // buildSpaceVertical(2.h),
               Container(
-                margin: const EdgeInsets.all(20),
-                width: Get.width,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: ColorManager.primaryColor,
-                    ),
-                    borderRadius: BorderRadius.circular(50),
+                margin: EdgeInsets.all(20),
+                child: CSCPicker(
+                  ///Enable disable state dropdown [OPTIONAL PARAMETER]
+                  showStates: true,
+
+                  /// Enable disable city drop down [OPTIONAL PARAMETER]
+                  showCities: true,
+
+                  ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
+                  flagState: CountryFlag.DISABLE,
+
+                  ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
+                  dropdownDecoration: BoxDecoration(
+                      borderRadius:
+                      const BorderRadius.all(Radius.circular(AppSize.s22)),
+                      color: Colors.white,
+                      border: Border.all(
+                          color: ColorManager.primaryColor, width: 1)),
+
+                  ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
+                  disabledDropdownDecoration: BoxDecoration(
+                      borderRadius:
+                      const BorderRadius.all(Radius.circular(AppSize.s22)),
+                      color: Colors.white,
+                      border: Border.all(
+                          color: ColorManager.primaryColor, width: 1)),
+
+                  ///placeholders for dropdown search field
+                  countrySearchPlaceholder: "Country",
+                  stateSearchPlaceholder: "State",
+                  citySearchPlaceholder: "City",
+
+                  ///labels for dropdown
+                  countryDropdownLabel: "Country",
+                  stateDropdownLabel: "State",
+                  cityDropdownLabel: "City",
+
+                  ///Default Country
+                  //defaultCountry: DefaultCountry.India,
+
+                  ///Disable country dropdown (Note: use it with default country)
+                  //disableCountry: true,
+
+                  ///selected item style [OPTIONAL PARAMETER]
+                  selectedItemStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
                   ),
-                  child: DropdownButton<String>(
-                      alignment: Alignment.center,
-                      underline: Container(),
-                      hint: const Text('  Select province'),
-                      value: selectedPro,
-                      items: pAKprovince.map((e) {
-                        return DropdownMenuItem<String>(
-                          value: e,
-                          child: Text(e),
-                        );
-                      }).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          selectedCity = null;
-                          cities = val == "Islamabad"
-                              ? iCity
-                              : val == 'punjab'
-                                  ? pCity
-                                  : val == 'sindh'
-                                      ? sCity
-                                      : val == 'KPK'
-                                          ? kCity
-                                          : bCity;
-                          selectedPro = val!;
-                        });
-                      }),
+
+                  ///DropdownDialog Heading style [OPTIONAL PARAMETER]
+                  dropdownHeadingStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+
+                  ///DropdownDialog Item style [OPTIONAL PARAMETER]
+                  dropdownItemStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
+
+                  ///Dialog box radius [OPTIONAL PARAMETER]
+                  dropdownDialogRadius: 10.0,
+
+                  ///Search bar radius [OPTIONAL PARAMETER]
+                  searchBarRadius: 10.0,
+
+                  ///triggers once country selected in dropdown
+                  onCountryChanged: (value) {
+                    setState(() {
+                      ///store value in country variable
+                      countryValue = value;
+                    });
+                  },
+
+                  ///triggers once state selected in dropdown
+                  onStateChanged: (value) {
+                    setState(() {
+                      ///store value in state variable
+                      stateValue = value;
+                    });
+                  },
+
+                  ///triggers once city selected in dropdown
+                  onCityChanged: (value) {
+                    setState(() {
+                      ///store value in city variable
+                      cityValue = value;
+                    });
+                  },
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.all(20),
-                width: Get.width,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: ColorManager.primaryColor,
-                    ),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: DropdownButton<String>(
-                      menuMaxHeight: Get.height * 0.7,
-                      alignment: Alignment.center,
-                      underline: Container(),
-                      hint: const Text('   Select city'),
-                      value: selectedCity,
-                      items: cities.map((e) {
-                        return DropdownMenuItem<String>(
-                          value: e,
-                          child: Text(e),
-                        );
-                      }).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          selectedCity = val!;
-                        });
-                      }),
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.all(20),
+              //   width: Get.width,
+              //   child: DecoratedBox(
+              //     decoration: BoxDecoration(
+              //       border: Border.all(
+              //         color: ColorManager.primaryColor,
+              //       ),
+              //       borderRadius: BorderRadius.circular(50),
+              //     ),
+              //     child: DropdownButton<String>(
+              //         alignment: Alignment.center,
+              //         underline: Container(),
+              //         hint: const Text('  Select province'),
+              //         value: stateValue,
+              //         items: pAKprovince.map((e) {
+              //           return DropdownMenuItem<String>(
+              //             value: e,
+              //             child: Text(e),
+              //           );
+              //         }).toList(),
+              //         onChanged: (val) {
+              //           setState(() {
+              //             cityValue = null;
+              //             cities = val == "Islamabad"
+              //                 ? iCity
+              //                 : val == 'punjab'
+              //                     ? pCity
+              //                     : val == 'sindh'
+              //                         ? sCity
+              //                         : val == 'KPK'
+              //                             ? kCity
+              //                             : bCity;
+              //             stateValue = val!;
+              //           });
+              //         }),
+              //   ),
+              // ),
+              // Container(
+              //   margin: const EdgeInsets.all(20),
+              //   width: Get.width,
+              //   child: DecoratedBox(
+              //     decoration: BoxDecoration(
+              //       border: Border.all(
+              //         color: ColorManager.primaryColor,
+              //       ),
+              //       borderRadius: BorderRadius.circular(50),
+              //     ),
+              //     child: DropdownButton<String>(
+              //         menuMaxHeight: Get.height * 0.7,
+              //         alignment: Alignment.center,
+              //         underline: Container(),
+              //         hint: const Text('   Select city'),
+              //         value: cityValue,
+              //         items: cities.map((e) {
+              //           return DropdownMenuItem<String>(
+              //             value: e,
+              //             child: Text(e),
+              //           );
+              //         }).toList(),
+              //         onChanged: (val) {
+              //           setState(() {
+              //             cityValue = val!;
+              //           });
+              //         }),
+              //   ),
+              // ),
 
               buildSpaceVertical(2.h),
 
@@ -243,8 +338,9 @@ class _PersonalProfileCompletionState extends State<PersonalProfileCompletion> {
                           emailController.text.trim(),
                           phoneController.text.trim(),
                           cnicController.text.trim(),
-                          selectedPro!,
-                          selectedCity!,
+                          stateValue!,
+                          cityValue!,
+                          countryValue!,
                           addressController.text.trim(),
                           cameraImage!);
                     } else if (galleryImage != null) {
@@ -254,8 +350,9 @@ class _PersonalProfileCompletionState extends State<PersonalProfileCompletion> {
                           emailController.text.trim(),
                           phoneController.text.trim(),
                           cnicController.text.trim(),
-                          selectedPro!,
-                          selectedCity!,
+                          stateValue!,
+                          cityValue!,
+                          countryValue!,
                           addressController.text.trim(),
                           galleryImage!);
                     } else {

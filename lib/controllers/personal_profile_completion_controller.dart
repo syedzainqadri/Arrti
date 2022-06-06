@@ -22,6 +22,7 @@ class PersonalProfileCompletionController extends GetxController {
       String cnicNo,
       String province,
       String city,
+      String country,
       String address,
       File image) async {
     isLoading.value = true;
@@ -30,7 +31,7 @@ class PersonalProfileCompletionController extends GetxController {
       await ref.putFile(image);
       imageUrl.value = await ref.getDownloadURL();
       addPersonalData(
-          firstName, lastName, email, phoneNo, cnicNo, province, city, address);
+          firstName, lastName, email, phoneNo, cnicNo, province, city,country, address);
       isLoading.value = false;
       Get.toNamed('/businessPC');
     } catch (e) {
@@ -47,6 +48,7 @@ class PersonalProfileCompletionController extends GetxController {
       String cnicNo,
       String province,
       String city,
+      String country,
       String address) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     userId = prefs.getString("userId");
@@ -71,6 +73,7 @@ class PersonalProfileCompletionController extends GetxController {
       "cnicNo": cnicNo,
       "province": province,
       "city": city,
+      'country':country,
       "address": address,
       "image": imageUrl.value,
       "searchIndex": indexList,
