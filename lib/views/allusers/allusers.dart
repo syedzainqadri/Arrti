@@ -17,7 +17,7 @@ class AllUsers extends StatefulWidget {
 class _AllUsersState extends State<AllUsers> {
   final TextEditingController _searchControler = TextEditingController();
   List<Map> searchResult = [];
-  List<Map> searchcityList = [];
+  //List<Map> searchcityList = [];
 
   List<Map> filterdResult = [];
 
@@ -28,7 +28,9 @@ class _AllUsersState extends State<AllUsers> {
     // TODO: implement initState
     super.initState();
     searchResult.clear;
+   // searchcityList.clear();
     searchAll();
+    searchAllwithcity();
   }
 
   void searchAllwithcity() async {
@@ -41,7 +43,7 @@ class _AllUsersState extends State<AllUsers> {
         .get()
         .then((value) {
       for (var alluser in value.docs) {
-        searchcityList.add(alluser.data());
+       // searchcityList.add(alluser.data());
       }
       setState(() {
         isloading = false;
@@ -55,7 +57,7 @@ class _AllUsersState extends State<AllUsers> {
     });
 
     await FirebaseFirestore.instance
-        .collection("usersAuthData")
+        .collection("usersBusinessData")
         .get()
         .then((value) {
       for (var alluser in value.docs) {
@@ -246,7 +248,9 @@ class _AllUsersState extends State<AllUsers> {
                           MaterialStateProperty.all(ColorManager.primaryColor)),
                   onPressed: () {
                     searchResult.clear();
+                   // searchcityList.clear();
                     onSearch();
+
                   },
                   child: textStyle2("search", TextAlign.center, Colors.white),
                 ),
@@ -275,7 +279,7 @@ class _AllUsersState extends State<AllUsers> {
                             child: selectedCity == null
                                 ? ListTile(
                                     title: Text(
-                                      searchResult[index]['name'].toString(),
+                                      searchResult[index]['businessName'].toString(),
                                       style: const TextStyle(
                                           color: ColorManager.primaryColor,
                                           fontWeight: FontWeight.bold),
@@ -284,10 +288,10 @@ class _AllUsersState extends State<AllUsers> {
                                         .toString()),
                                   )
                                 : selectedCity.toString().trim() ==
-                                        searchcityList[index]['city']
+                                searchResult[index]['city']
                                     ? ListTile(
                                         title: Text(
-                                          searchResult[index]['name']
+                                          searchResult[index]['businessName']
                                               .toString(),
                                           style: const TextStyle(
                                               color: ColorManager.primaryColor,

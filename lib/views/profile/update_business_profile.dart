@@ -52,22 +52,6 @@ class _UpdateBusinessProfileState extends State<UpdateBusinessProfile> {
     DropdownMenuItem(child: Text("Swabi"), value: "Swabi"),
   ];
 
-  List<DropdownMenuItem<String>> mandees = const [
-    DropdownMenuItem(child: Text("Islamabad Mandi"), value: "Islamabad Mandi"),
-    DropdownMenuItem(
-        child: Text("Rawalpindi Mandi"), value: "Rawalpindi Mandi"),
-    DropdownMenuItem(child: Text("Lahore Mandi"), value: "Lahore Mandi"),
-    DropdownMenuItem(child: Text("Peshawar Mandi"), value: "Peshawar Mandi"),
-    DropdownMenuItem(child: Text("Swabi Mandi"), value: "Swabi Mandi"),
-  ];
-
-  List<DropdownMenuItem<String>> provinces = const [
-    DropdownMenuItem(child: Text("Punjab"), value: "Punjab"),
-    DropdownMenuItem(
-        child: Text("Khyber Pukhtunkhwa"), value: "Khyber Pukhtunkhwa"),
-    DropdownMenuItem(child: Text("Sindh"), value: "Sindh"),
-    DropdownMenuItem(child: Text("Baluchistan"), value: "Baluchistan"),
-  ];
 
   File? galleryImage;
   File? cameraImage;

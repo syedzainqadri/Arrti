@@ -21,6 +21,7 @@ class PersonalProfileUpdateController extends GetxController {
       String cnicNo,
       String province,
       String city,
+      String  country,
       String address,
       File image) async {
     isLoading.value = true;
@@ -29,7 +30,7 @@ class PersonalProfileUpdateController extends GetxController {
       await ref.putFile(image);
       imageUrl.value = await ref.getDownloadURL();
       updatePersonalData(
-          firstName, lastName, email, phoneNo, cnicNo, province, city, address);
+          firstName, lastName, email, phoneNo, cnicNo, province, city,country, address);
       isLoading.value = false;
       Get.offAllNamed('/waitingView');
     } catch (e) {
@@ -46,6 +47,7 @@ class PersonalProfileUpdateController extends GetxController {
       String cnicNo,
       String province,
       String city,
+      String country,
       String address) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     userId = prefs.getString("userId");
@@ -70,6 +72,7 @@ class PersonalProfileUpdateController extends GetxController {
       "cnicNo": cnicNo,
       "province": province,
       "city": city,
+      "country":country,
       "address": address,
       "image": imageUrl.value,
       "searchIndex": indexList,
@@ -84,6 +87,7 @@ class PersonalProfileUpdateController extends GetxController {
       String cnicNo,
       String province,
       String city,
+      String country,
       String address,
       String image) async {
     isLoading.value = true;
@@ -110,6 +114,7 @@ class PersonalProfileUpdateController extends GetxController {
       "cnicNo": cnicNo,
       "province": province,
       "city": city,
+      "country":country,
       "address": address,
       "image": image,
       "searchIndex": indexList,
