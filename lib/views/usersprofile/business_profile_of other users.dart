@@ -42,11 +42,10 @@ class _BussinessProfileofotherusersState
       appBar: AppBar(
           backgroundColor: ColorManager.primaryColor,
           centerTitle: true,
-          title: Text(userBusinessInfoModel!.businessName.toString())),
+          title: const Text("Profile")),
       body: _profileController.isLoading.isTrue
           ? const Center(child: CircularProgressIndicator())
-          : userBusinessInfoModel != null
-              ? SingleChildScrollView(
+          :  SingleChildScrollView(
                   child: Column(
                     children: [
                       buildSpaceVertical(3.h),
@@ -227,9 +226,7 @@ class _BussinessProfileofotherusersState
                     ],
                   ),
                 )
-              : Center(
-                  child: textStyle3("No Personal Info Available",
-                      TextAlign.center, ColorManager.primaryColor)),
+             ,
     );
   }
 
