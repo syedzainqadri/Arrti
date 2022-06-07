@@ -1,19 +1,20 @@
 import 'dart:io';
-import 'package:apni_mandi/controllers/business_profile_completion_controller.dart';
-import 'package:apni_mandi/utils/constants/assets_manager.dart';
-import 'package:apni_mandi/utils/constants/color_manager.dart';
-import 'package:apni_mandi/utils/constants/strings_manager.dart';
-import 'package:apni_mandi/utils/constants/values_manager.dart';
-import 'package:apni_mandi/utils/helpers/helper.dart';
-import 'package:apni_mandi/utils/helpers/text_helper.dart';
-import 'package:apni_mandi/widgets/large_button.dart';
-import 'package:apni_mandi/widgets/text_field.dart';
+import 'package:csc_picker/csc_picker.dart';
+import '../../../controllers/business_profile_completion_controller.dart';
+import '../../../utils/constants/assets_manager.dart';
+import '../../../utils/constants/color_manager.dart';
+import '../../../utils/constants/strings_manager.dart';
+import '../../../utils/constants/values_manager.dart';
+import '../../../utils/helpers/helper.dart';
+import '../../../utils/helpers/text_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
+import '../../../widgets/large_button.dart';
+import '../../../widgets/text_field.dart';
 
 class BusinessProfileCompletion extends StatefulWidget {
   const BusinessProfileCompletion({Key? key}) : super(key: key);
@@ -28,41 +29,20 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
   final addressController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
+  final phoneController1 = TextEditingController();
+  final phoneController2 = TextEditingController();
   final ntnController = TextEditingController();
+  final selectedMandi = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  String? selectedCity;
-  String? selectedProvince;
-  String? selectedDistrict;
-  String? selectedMandi;
+  String? countryValue;
+  String? cityValue;
+  String? stateValue;
+
+  //String? selectedMandi;
   DateTime now = DateTime.now();
   DateFormat formatter = DateFormat('dd-MM-yyyy');
   String? formatted;
-
-  List<DropdownMenuItem<String>> cities = const [
-    DropdownMenuItem(child: Text("Islamabad"), value: "Islamabad"),
-    DropdownMenuItem(child: Text("Rawalpindi"), value: "Rawalpindi"),
-    DropdownMenuItem(child: Text("Lahore"), value: "Lahore"),
-    DropdownMenuItem(child: Text("Peshawar"), value: "Peshawar"),
-    DropdownMenuItem(child: Text("Swabi"), value: "Swabi"),
-  ];
-
-  List<DropdownMenuItem<String>> mandees = const [
-    DropdownMenuItem(child: Text("Islamabad Mandi"), value: "Islamabad Mandi"),
-    DropdownMenuItem(
-        child: Text("Rawalpindi Mandi"), value: "Rawalpindi Mandi"),
-    DropdownMenuItem(child: Text("Lahore Mandi"), value: "Lahore Mandi"),
-    DropdownMenuItem(child: Text("Peshawar Mandi"), value: "Peshawar Mandi"),
-    DropdownMenuItem(child: Text("Swabi Mandi"), value: "Swabi Mandi"),
-  ];
-
-  List<DropdownMenuItem<String>> provinces = const [
-    DropdownMenuItem(child: Text("Punjab"), value: "Punjab"),
-    DropdownMenuItem(
-        child: Text("Khyber Pukhtunkhwa"), value: "Khyber Pukhtunkhwa"),
-    DropdownMenuItem(child: Text("Sindh"), value: "Sindh"),
-    DropdownMenuItem(child: Text("Baluchistan"), value: "Baluchistan"),
-  ];
 
   File? galleryImage;
   File? cameraImage;
@@ -152,7 +132,7 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                 controller: addressController,
                 hintName: StringsManager.address,
                 icon: Icons.home,
-                inputLines: 4,
+                inputLines: 1,
                 inputLength: 300,
               ),
               // buildSpaceVertical(1.h),
@@ -174,6 +154,22 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                 inputLength: 11,
               ),
               // buildSpaceVertical(1.h),
+              GetTextField1(
+                controller: phoneController1,
+                hintName: StringsManager.phoneNo1,
+                icon: Icons.call_rounded,
+                inputType: TextInputType.phone,
+                inputLength: 11,
+              ),
+              // buildSpaceVertical(1.h),
+              GetTextField1(
+                controller: phoneController2,
+                hintName: StringsManager.phoneNo2,
+                icon: Icons.call_rounded,
+                inputType: TextInputType.phone,
+                inputLength: 11,
+              ),
+              // buildSpaceVertical(1.h),
 
               GetTextField(
                 controller: ntnController,
@@ -183,203 +179,108 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                 inputLength: 8,
               ),
               // buildSpaceVertical(1.h),
+              Container(
+                margin: EdgeInsets.all(20),
+                child: CSCPicker(
+                  ///Enable disable state dropdown [OPTIONAL PARAMETER]
+                  showStates: true,
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-                child: DropdownButtonFormField(
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      filled: true,
-                      fillColor: ColorManager.whiteColor,
-                    ),
-                    validator: (value) =>
-                        value == null ? StringsManager.sCity : null,
-                    dropdownColor: ColorManager.whiteColor,
-                    hint: const Text(StringsManager.sCity),
-                    value: selectedCity,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedCity = newValue!;
-                      });
-                    },
-                    items: cities),
+                  /// Enable disable city drop down [OPTIONAL PARAMETER]
+                  showCities: true,
+
+                  ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
+                  flagState: CountryFlag.DISABLE,
+
+                  ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
+                  dropdownDecoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(AppSize.s22)),
+                      color: Colors.white,
+                      border: Border.all(
+                          color: ColorManager.primaryColor, width: 1)),
+
+                  ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
+                  disabledDropdownDecoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(AppSize.s22)),
+                      color: Colors.white,
+                      border: Border.all(
+                          color: ColorManager.primaryColor, width: 1)),
+
+                  ///placeholders for dropdown search field
+                  countrySearchPlaceholder: "Country",
+                  stateSearchPlaceholder: "State",
+                  citySearchPlaceholder: "City",
+
+                  ///labels for dropdown
+                  countryDropdownLabel: "Country",
+                  stateDropdownLabel: "State",
+                  cityDropdownLabel: "City",
+
+                  ///Default Country
+                  //defaultCountry: DefaultCountry.India,
+
+                  ///Disable country dropdown (Note: use it with default country)
+                  //disableCountry: true,
+
+                  ///selected item style [OPTIONAL PARAMETER]
+                  selectedItemStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
+
+                  ///DropdownDialog Heading style [OPTIONAL PARAMETER]
+                  dropdownHeadingStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+
+                  ///DropdownDialog Item style [OPTIONAL PARAMETER]
+                  dropdownItemStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
+
+                  ///Dialog box radius [OPTIONAL PARAMETER]
+                  dropdownDialogRadius: 10.0,
+
+                  ///Search bar radius [OPTIONAL PARAMETER]
+                  searchBarRadius: 10.0,
+
+                  ///triggers once country selected in dropdown
+                  onCountryChanged: (value) {
+                    setState(() {
+                      ///store value in country variable
+                      countryValue = value;
+                    });
+                  },
+
+                  ///triggers once state selected in dropdown
+                  onStateChanged: (value) {
+                    setState(() {
+                      ///store value in state variable
+                      stateValue = value;
+                    });
+                  },
+
+                  ///triggers once city selected in dropdown
+                  onCityChanged: (value) {
+                    setState(() {
+                      ///store value in city variable
+                      cityValue = value;
+                    });
+                  },
+                ),
               ),
-              buildSpaceVertical(2.h),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-                child: DropdownButtonFormField(
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      filled: true,
-                      fillColor: ColorManager.whiteColor,
-                    ),
-                    validator: (value) =>
-                        value == null ? StringsManager.sProvince : null,
-                    dropdownColor: ColorManager.whiteColor,
-                    hint: const Text(StringsManager.sProvince),
-                    value: selectedProvince,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedProvince = newValue!;
-                      });
-                    },
-                    items: provinces),
+              GetTextField(
+                controller: selectedMandi,
+                hintName: "Enter Mandi name",
+                icon: Icons.house_outlined,
+                inputType: TextInputType.text,
+                inputLength: 8,
               ),
-              buildSpaceVertical(2.h),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-                child: DropdownButtonFormField(
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      filled: true,
-                      fillColor: ColorManager.whiteColor,
-                    ),
-                    validator: (value) =>
-                        value == null ? StringsManager.sDistrict : null,
-                    dropdownColor: ColorManager.whiteColor,
-                    hint: const Text(StringsManager.sDistrict),
-                    value: selectedDistrict,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedDistrict = newValue!;
-                      });
-                    },
-                    items: cities),
-              ),
-              buildSpaceVertical(2.h),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-                child: DropdownButtonFormField(
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide:
-                            BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      filled: true,
-                      fillColor: ColorManager.whiteColor,
-                    ),
-                    validator: (value) =>
-                        value == null ? StringsManager.sMandi : null,
-                    dropdownColor: ColorManager.whiteColor,
-                    hint: const Text(StringsManager.sMandi),
-                    value: selectedMandi,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedMandi = newValue!;
-                      });
-                    },
-                    items: mandees),
-              ),
-              buildSpaceVertical(4.h),
-
+              buildSpaceVertical(1.h),
               InkWell(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
@@ -392,26 +293,32 @@ class _BusinessProfileCompletionState extends State<BusinessProfileCompletion> {
                           addressController.text.trim(),
                           emailController.text.trim(),
                           phoneController.text.trim(),
+                          phoneController1.text.trim(),
+                          phoneController2.text.trim(),
                           ntnController.text.trim(),
-                          selectedCity!,
-                          selectedProvince!,
-                          selectedDistrict!,
-                          selectedMandi!,
+                          cityValue!,
+                          stateValue!,
+                          countryValue!,
+                          selectedMandi.text.trim(),
                           formatted!,
-                          cameraImage!);
+                          cameraImage!,
+                          false);
                     } else if (galleryImage != null) {
                       _profileCompletionController.uploadData(
                           businessNameController.text.trim(),
                           addressController.text.trim(),
                           emailController.text.trim(),
+                          phoneController1.text.trim(),
+                          phoneController2.text.trim(),
                           phoneController.text.trim(),
                           ntnController.text.trim(),
-                          selectedCity!,
-                          selectedProvince!,
-                          selectedDistrict!,
-                          selectedMandi!,
+                          cityValue!,
+                          stateValue!,
+                          countryValue!,
+                          selectedMandi.text.trim(),
                           formatted!,
-                          galleryImage!);
+                          galleryImage!,
+                          false);
                     } else {
                       errorToast(StringsManager.error, StringsManager.noPic);
                     }

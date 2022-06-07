@@ -1,19 +1,16 @@
-import 'package:apni_mandi/views/allusers/allusers.dart';
-import 'package:apni_mandi/views/forgot_pass/screen/forgot_password_screen.dart';
-import 'package:apni_mandi/views/login/components/login_success_screen.dart';
-import 'package:apni_mandi/views/onBoarding/screen/onboarding_screen.dart';
-import 'package:apni_mandi/views/profile_completion/screens/business_profile_completion.dart';
-import 'package:apni_mandi/views/profile_completion/screens/personal_profile_completion.dart';
-import 'package:apni_mandi/views/register/components/register_success_screen.dart';
-import 'package:apni_mandi/views/search_member/screen/search_member_screen.dart';
-import 'package:apni_mandi/views/splash/splash_screen.dart';
-import 'package:apni_mandi/views/usersprofile/waiting_screen%20for%20users.dart';
-import 'package:apni_mandi/widgets/auth_toggle_view.dart';
-import 'package:apni_mandi/views/profile/waiting_screen.dart';
 import 'package:get/get.dart';
 
-import '../views/usersprofile/business_profile_of other users.dart';
-import '../views/usersprofile/profileofotherusers.dart';
+import '../views/allusers/allusers.dart';
+import '../views/forgot_pass/screen/forgot_password_screen.dart';
+import '../views/login/components/login_success_screen.dart';
+import '../views/onBoarding/screen/onboarding_screen.dart';
+import '../views/profile/waiting_screen.dart';
+import '../views/profile_completion/screens/business_profile_completion.dart';
+import '../views/profile_completion/screens/personal_profile_completion.dart';
+import '../views/register/components/register_success_screen.dart';
+import '../views/search_member/screen/search_member_screen.dart';
+import '../views/splash/splash_screen.dart';
+import '../widgets/auth_toggle_view.dart';
 
 class AppRoutes {
   AppRoutes._(); //this is to prevent anyone from instantiating this object

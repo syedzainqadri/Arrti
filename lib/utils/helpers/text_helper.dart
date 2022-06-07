@@ -1,8 +1,8 @@
-import 'dart:ui';
-import 'package:apni_mandi/utils/constants/font_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../constants/font_manager.dart';
 
 Text textStyle1(String title, TextAlign textAlign, Color color) {
   return Text(

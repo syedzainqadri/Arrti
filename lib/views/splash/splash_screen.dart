@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:apni_mandi/utils/constants/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
@@ -7,6 +6,9 @@ import 'package:get/get.dart';
 import '../../controllers/profile_controller.dart';
 import '../../models/business_info_model.dart';
 import '../../models/personal_info_model.dart';
+import '../../utils/constants/assets_manager.dart';
+import '../../utils/constants/color_manager.dart';
+import '../../utils/helpers/text_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -63,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen>
       } else if (businessInfoModel == null) {
         Get.offNamed('/waitingView');
       } else {
-        Get.offNamed('/personalPC');
+        Get.offNamed('/waitingView');
       }
     } else {
       Get.toNamed('/authView');
@@ -83,9 +85,19 @@ class _SplashScreenState extends State<SplashScreen>
         child: AnimatedBuilder(
             animation: _animationSize,
             builder: (context, child) {
-              return Image.asset(AssetImages.logo,
-                  height: _animationSize.value.h,
-                  width: _animationSize.value.w);
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(AssetImages.logo,
+                      height: _animationSize.value.h / 2,
+                      width: _animationSize.value.w / 2),
+                  textStyle4("Anjamn e Artian Pakistan", TextAlign.center,
+                      ColorManager.primaryColor),
+                  textStyle1("Anjamn Agree Produce comission agents (AAPCA)",
+                      TextAlign.center, ColorManager.primaryColor),
+                ],
+              );
             }),
       ),
     );

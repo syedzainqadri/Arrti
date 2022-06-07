@@ -1,34 +1,37 @@
-import 'package:apni_mandi/views/profile/update_personal_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/profile_controller.dart';
-import '../../models/personal_info_model.dart';
+import '../../models/Users_info_model.dart';
 import '../../utils/constants/assets_manager.dart';
 import '../../utils/constants/color_manager.dart';
 import '../../utils/constants/values_manager.dart';
 import '../../utils/helpers/helper.dart';
 import '../../utils/helpers/text_helper.dart';
 
-class PersonalProfileScreen extends StatefulWidget {
-  const PersonalProfileScreen({Key? key}) : super(key: key);
+class PersonalProfileofOtherusers extends StatefulWidget {
+  String uid;
+  PersonalProfileofOtherusers(this.uid, {Key? key}) : super(key: key);
 
   @override
-  State<PersonalProfileScreen> createState() => _PersonalProfileScreenState();
+  State<PersonalProfileofOtherusers> createState() =>
+      _PersonalProfileofOtherusersState();
 }
 
-class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
+class _PersonalProfileofOtherusersState
+    extends State<PersonalProfileofOtherusers> {
   final ProfileController _profileController = Get.put(ProfileController());
-  PersonalInfoModel? personalInfoModel;
+  //PersonalInfoModel? personalInfoModel;
+  UsersInfoModel? usersInfoModel;
 
   @override
   void initState() {
     super.initState();
-    getData();
+    getData(widget.uid);
   }
 
-  getData() async {
-    personalInfoModel = await _profileController.getPersonalData();
+  getData(id) async {
+    usersInfoModel = await _profileController.userPersonalData(id);
     setState(() {});
   }
 
@@ -37,12 +40,12 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
     return Scaffold(
       body: _profileController.isLoading.isTrue
           ? const Center(child: CircularProgressIndicator())
-          : personalInfoModel != null
+          : usersInfoModel != null
               ? SingleChildScrollView(
                   child: Column(
                     children: [
                       buildSpaceVertical(3.h),
-                      personalInfoModel!.profileImage != null
+                      usersInfoModel!.profileImage != null
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -51,20 +54,20 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                                   radius: 60,
                                   backgroundColor: ColorManager.grayColor,
                                   backgroundImage: NetworkImage(
-                                      personalInfoModel!.profileImage ?? ''),
+                                      usersInfoModel!.profileImage ?? ''),
                                 ),
                                 buildSpaceHorizontal(20.w),
-                                IconButton(
-                                  onPressed: () {
-                                    Get.to(UpdatePersonalProfile(
-                                        personalInfoModel: personalInfoModel!));
-                                  },
-                                  icon: const Icon(
-                                    Icons.edit,
-                                    color: ColorManager.primaryColor,
-                                    size: 30,
-                                  ),
-                                )
+                                // IconButton(
+                                //   onPressed: () {
+                                //     Get.to(UpdatePersonalProfile(
+                                //         personalInfoModel: personalInfoModel!));
+                                //   },
+                                //   icon: const Icon(
+                                //     Icons.edit,
+                                //     color: ColorManager.primaryColor,
+                                //     size: 30,
+                                //   ),
+                                // )
                               ],
                             )
                           : Row(
@@ -78,17 +81,17 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                                       AssetImage(AssetImages.avatar),
                                 ),
                                 buildSpaceHorizontal(20.w),
-                                IconButton(
-                                  onPressed: () {
-                                    Get.to(UpdatePersonalProfile(
-                                        personalInfoModel: personalInfoModel!));
-                                  },
-                                  icon: const Icon(
-                                    Icons.edit,
-                                    color: ColorManager.primaryColor,
-                                    size: 30,
-                                  ),
-                                )
+                                // IconButton(
+                                //   onPressed: () {
+                                //     Get.to(UpdatePersonalProfile(
+                                //         personalInfoModel: personalInfoModel!));
+                                //   },
+                                //   icon: const Icon(
+                                //     Icons.edit,
+                                //     color: ColorManager.primaryColor,
+                                //     size: 30,
+                                //   ),
+                                // )
                               ],
                             ),
 
@@ -103,7 +106,7 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                             textStyle3("Personal Name:", TextAlign.center,
                                 ColorManager.primaryColor),
                             textStyle2(
-                                "${personalInfoModel!.firstName}  ${personalInfoModel!.lastName} ",
+                                "${usersInfoModel!.firstName}  ${usersInfoModel!.lastName} ",
                                 TextAlign.center,
                                 ColorManager.primaryColor),
                           ],
@@ -119,7 +122,7 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                           children: [
                             textStyle3("Personal No:", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.phoneNo}",
+                            textStyle2("${usersInfoModel!.phoneNo}",
                                 TextAlign.center, ColorManager.primaryColor),
                           ],
                         ),
@@ -135,7 +138,7 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                             textStyle3("Personal Email : ", TextAlign.center,
                                 ColorManager.primaryColor),
                             Expanded(
-                              child: textStyle2("${personalInfoModel!.email}",
+                              child: textStyle2("${usersInfoModel!.email}",
                                   TextAlign.center, ColorManager.primaryColor),
                             ),
                           ],
@@ -151,7 +154,7 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                           children: [
                             textStyle3("Personal CNIC", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.cnicNo}",
+                            textStyle2("${usersInfoModel!.cnicNo}",
                                 TextAlign.center, ColorManager.primaryColor),
                           ],
                         ),
@@ -166,7 +169,7 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                           children: [
                             textStyle3("Personal City:", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.city}",
+                            textStyle2("${usersInfoModel!.city}",
                                 TextAlign.center, ColorManager.primaryColor),
                           ],
                         ),
@@ -181,7 +184,7 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                           children: [
                             textStyle3("Personal Address:", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.address}",
+                            textStyle2("${usersInfoModel!.address}",
                                 TextAlign.center, ColorManager.primaryColor),
                           ],
                         ),
@@ -196,7 +199,7 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                           children: [
                             textStyle3("Personal Province:", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.province}",
+                            textStyle2("${usersInfoModel!.province}",
                                 TextAlign.center, ColorManager.primaryColor),
                           ],
                         ),

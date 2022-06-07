@@ -1,33 +1,33 @@
-
 import 'dart:io';
-import 'package:apni_mandi/utils/constants/assets_manager.dart';
-import 'package:apni_mandi/utils/constants/color_manager.dart';
-import 'package:apni_mandi/utils/constants/strings_manager.dart';
-import 'package:apni_mandi/utils/constants/values_manager.dart';
-import 'package:apni_mandi/utils/helpers/helper.dart';
-import 'package:apni_mandi/utils/helpers/text_helper.dart';
-import 'package:apni_mandi/widgets/large_button.dart';
-import 'package:apni_mandi/widgets/text_field.dart';
+import 'package:csc_picker/csc_picker.dart';
+
+import '../../../utils/constants/color_manager.dart';
+import '../../../utils/constants/strings_manager.dart';
+import '../../../utils/constants/values_manager.dart';
+import '../../../utils/helpers/helper.dart';
+import '../../../utils/helpers/text_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/personal_profile_update_controller.dart';
 import '../../models/personal_info_model.dart';
-
+import '../../utils/constants/assets_manager.dart';
+import '../../utils/helpers/citeis_ProvincesList.dart';
+import '../../widgets/large_button.dart';
+import '../../widgets/text_field.dart';
 
 class UpdatePersonalProfile extends StatefulWidget {
   final PersonalInfoModel personalInfoModel;
-  const UpdatePersonalProfile({Key? key, required this.personalInfoModel}) : super(key: key);
+  const UpdatePersonalProfile({Key? key, required this.personalInfoModel})
+      : super(key: key);
 
   @override
   State<UpdatePersonalProfile> createState() => _UpdatePersonalProfileState();
 }
 
 class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
-
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
@@ -36,29 +36,16 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
   final addressController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  String? selectedCity;
-  String? selectedProvince;
-
-  List<DropdownMenuItem<String>> cities = const [
-    DropdownMenuItem(child: Text("Islamabad"), value: "Islamabad"),
-    DropdownMenuItem(child: Text("Rawalpindi"), value: "Rawalpindi"),
-    DropdownMenuItem(child: Text("Lahore"), value: "Lahore"),
-    DropdownMenuItem(child: Text("Peshawar"), value: "Peshawar"),
-    DropdownMenuItem(child: Text("Swabi"), value: "Swabi"),
-  ];
-
-  List<DropdownMenuItem<String>> provinces = const [
-    DropdownMenuItem(child: Text("Punjab"), value: "Punjab"),
-    DropdownMenuItem(child: Text("Khyber Pukhtunkhwa"), value: "Khyber Pukhtunkhwa"),
-    DropdownMenuItem(child: Text("Sindh"), value: "Sindh"),
-    DropdownMenuItem(child: Text("Baluchistan"), value: "Baluchistan"),
-  ];
+  String? stateValue;
+  String? cityValue;
+  String? countryValue;
 
   File? galleryImage;
   File? cameraImage;
   final picker = ImagePicker();
 
-  final PersonalProfileUpdateController profileUpdateController = Get.put(PersonalProfileUpdateController());
+  final PersonalProfileUpdateController profileUpdateController =
+      Get.put(PersonalProfileUpdateController());
 
   @override
   void initState() {
@@ -69,8 +56,6 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
     phoneController.text = widget.personalInfoModel.phoneNo!;
     cnicController.text = widget.personalInfoModel.cnicNo!;
     addressController.text = widget.personalInfoModel.address!;
-    selectedCity = widget.personalInfoModel.city;
-    selectedProvince = widget.personalInfoModel.province;
   }
 
   @override
@@ -83,17 +68,13 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
             children: [
               buildSpaceVertical(8.h),
               Center(
-                child: textStyle7(
-                    StringsManager.personalPC,
-                    TextAlign.center,
+                child: textStyle7(StringsManager.personalPC, TextAlign.center,
                     ColorManager.primaryColor),
               ),
               buildSpaceVertical(1.5.h),
               Center(
-                child: textStyle2(
-                    "Update your personal profile to continue",
-                    TextAlign.center,
-                    ColorManager.grayColor),
+                child: textStyle2("Update your personal profile to continue",
+                    TextAlign.center, ColorManager.grayColor),
               ),
               buildSpaceVertical(2.h),
 
@@ -104,30 +85,31 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
                   fit: StackFit.expand,
                   clipBehavior: Clip.none,
                   children: [
-                    cameraImage != null ?
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: ColorManager.grayColor,
-                      backgroundImage: FileImage(cameraImage!),
-                    )
-                        : galleryImage != null ?
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: ColorManager.grayColor,
-                      backgroundImage: FileImage(galleryImage!),
-                    )
-                        : widget.personalInfoModel.profileImage != null ?
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: ColorManager.grayColor,
-                      backgroundImage: NetworkImage(widget.personalInfoModel.profileImage!),
-                    )
-                     :
-                    const CircleAvatar(
-                      radius: 50,
-                      backgroundColor: ColorManager.grayColor,
-                      backgroundImage: AssetImage(AssetImages.avatar),
-                    ),
+                    cameraImage != null
+                        ? CircleAvatar(
+                            radius: 50,
+                            backgroundColor: ColorManager.grayColor,
+                            backgroundImage: FileImage(cameraImage!),
+                          )
+                        : galleryImage != null
+                            ? CircleAvatar(
+                                radius: 50,
+                                backgroundColor: ColorManager.grayColor,
+                                backgroundImage: FileImage(galleryImage!),
+                              )
+                            : widget.personalInfoModel.profileImage != null
+                                ? CircleAvatar(
+                                    radius: 50,
+                                    backgroundColor: ColorManager.grayColor,
+                                    backgroundImage: NetworkImage(
+                                        widget.personalInfoModel.profileImage!),
+                                  )
+                                : const CircleAvatar(
+                                    radius: 50,
+                                    backgroundColor: ColorManager.grayColor,
+                                    backgroundImage:
+                                        AssetImage(AssetImages.avatar),
+                                  ),
                     Positioned(
                       right: -2,
                       bottom: 2,
@@ -194,150 +176,251 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
                 inputLength: 13,
               ),
               // buildSpaceVertical(2.h),
-
               Container(
-                height: 70,
-                margin: EdgeInsets.only(top: 10),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-                  child: DropdownButtonFormField(
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                          borderSide: BorderSide(color: ColorManager.primaryColor),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                          borderSide: BorderSide(color: ColorManager.primaryColor),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                          borderSide: BorderSide(color: ColorManager.redColor),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                          borderSide: BorderSide(color: ColorManager.redColor),
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                          borderSide: BorderSide(color: ColorManager.primaryColor),
-                        ),
-                        filled: true,
-                        fillColor: ColorManager.whiteColor,
-                      ),
-                      validator: (value) => value == null ?  StringsManager.sProvince: null,
-                      dropdownColor: ColorManager.whiteColor,
-                      hint: const Text(StringsManager.sProvince),
-                      value: selectedProvince,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedProvince = newValue!;
-                        });
-                      },
-                      items: provinces
-                  ),
-                ),
-              ),
-              buildSpaceVertical(4.h),
+                margin: EdgeInsets.all(20),
+                child: CSCPicker(
+                  ///Enable disable state dropdown [OPTIONAL PARAMETER]
+                  showStates: true,
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-                child: DropdownButtonFormField(
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.redColor),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s22)),
-                        borderSide: BorderSide(color: ColorManager.primaryColor),
-                      ),
-                      filled: true,
-                      fillColor: ColorManager.whiteColor,
-                    ),
-                    validator: (value) => value == null ?  StringsManager.sCity: null,
-                    dropdownColor: ColorManager.whiteColor,
-                    hint: const Text(StringsManager.sCity),
-                    value: selectedCity,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedCity = newValue!;
-                      });
-                    },
-                    items: cities
+                  /// Enable disable city drop down [OPTIONAL PARAMETER]
+                  showCities: true,
+
+                  ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
+                  flagState: CountryFlag.DISABLE,
+
+                  ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
+                  dropdownDecoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(AppSize.s22)),
+                      color: Colors.white,
+                      border: Border.all(
+                          color: ColorManager.primaryColor, width: 1)),
+
+                  ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
+                  disabledDropdownDecoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(AppSize.s22)),
+                      color: Colors.white,
+                      border: Border.all(
+                          color: ColorManager.primaryColor, width: 1)),
+
+                  ///placeholders for dropdown search field
+                  countrySearchPlaceholder: "Country",
+                  stateSearchPlaceholder: "State",
+                  citySearchPlaceholder: "City",
+
+                  ///labels for dropdown
+                  countryDropdownLabel: "Country",
+                  stateDropdownLabel: "State",
+                  cityDropdownLabel: "City",
+
+                  ///Default Country
+                  //defaultCountry: DefaultCountry.India,
+
+                  ///Disable country dropdown (Note: use it with default country)
+                  //disableCountry: true,
+
+                  ///selected item style [OPTIONAL PARAMETER]
+                  selectedItemStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
+
+                  ///DropdownDialog Heading style [OPTIONAL PARAMETER]
+                  dropdownHeadingStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+
+                  ///DropdownDialog Item style [OPTIONAL PARAMETER]
+                  dropdownItemStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
+
+                  ///Dialog box radius [OPTIONAL PARAMETER]
+                  dropdownDialogRadius: 10.0,
+
+                  ///Search bar radius [OPTIONAL PARAMETER]
+                  searchBarRadius: 10.0,
+
+                  ///triggers once country selected in dropdown
+                  onCountryChanged: (value) {
+                    setState(() {
+                      ///store value in country variable
+                      countryValue = value;
+                    });
+                  },
+
+                  ///triggers once state selected in dropdown
+                  onStateChanged: (value) {
+                    setState(() {
+                      ///store value in state variable
+                      stateValue = value;
+                    });
+                  },
+
+                  ///triggers once city selected in dropdown
+                  onCityChanged: (value) {
+                    setState(() {
+                      ///store value in city variable
+                      cityValue = value;
+                    });
+                  },
                 ),
               ),
+              // Container(
+              //   margin: const EdgeInsets.all(20),
+              //   width: Get.width,
+              //   child: DecoratedBox(
+              //     decoration: BoxDecoration(
+              //       border: Border.all(
+              //         color: ColorManager.primaryColor,
+              //       ),
+              //       borderRadius: BorderRadius.circular(50),
+              //     ),
+              //     child: DropdownButton<String>(
+              //         alignment: Alignment.center,
+              //         underline: Container(),
+              //         hint: const Text('  Select province'),
+              //         value: stateValue,
+              //         items: pAKprovince.map((e) {
+              //           return DropdownMenuItem<String>(
+              //             value: e,
+              //             child: Text(e),
+              //           );
+              //         }).toList(),
+              //         onChanged: (val) {
+              //           setState(() {
+              //             cityValue = null;
+              //             cities = val == "Islamabad"
+              //                 ? iCity
+              //                 : val == 'punjab'
+              //                     ? pCity
+              //                     : val == 'sindh'
+              //                         ? sCity
+              //                         : val == 'KPK'
+              //                             ? kCity
+              //                             : bCity;
+              //             stateValue = val!;
+              //           });
+              //         }),
+              //   ),
+              // ),
+              // Container(
+              //   margin: const EdgeInsets.all(20),
+              //   width: Get.width,
+              //   child: DecoratedBox(
+              //     decoration: BoxDecoration(
+              //       border: Border.all(
+              //         color: ColorManager.primaryColor,
+              //       ),
+              //       borderRadius: BorderRadius.circular(50),
+              //     ),
+              //     child: DropdownButton<String>(
+              //         menuMaxHeight: Get.height * 0.7,
+              //         alignment: Alignment.center,
+              //         underline: Container(),
+              //         hint: const Text('   Select city'),
+              //         value: cityValue,
+              //         items: cities.map((e) {
+              //           return DropdownMenuItem<String>(
+              //             value: e,
+              //             child: Text(e),
+              //           );
+              //         }).toList(),
+              //         onChanged: (val) {
+              //           setState(() {
+              //             cityValue = val!;
+              //           });
+              //         }),
+              //   ),
+              // ),
+
               buildSpaceVertical(2.h),
 
               GetTextField(
                 controller: addressController,
                 hintName: StringsManager.address,
                 icon: Icons.home,
-                inputLines: 4,
+                inputLines: 1,
                 inputLength: 300,
               ),
               buildSpaceVertical(2.h),
 
-
               InkWell(
                 onTap: () {
-                  if(_formKey.currentState!.validate()){
+                  if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
 
-                    if(widget.personalInfoModel.profileImage != null){
-                      profileUpdateController.updatePersonalDataWithImage(firstNameController.text.trim(), lastNameController.text.trim(),
-                          emailController.text.trim(), phoneController.text.trim(), cnicController.text.trim(), selectedProvince!,
-                          selectedCity!, addressController.text.trim(), widget.personalInfoModel.profileImage!);
-                    } else if(cameraImage != null){
-                      profileUpdateController.updateData(firstNameController.text.trim(), lastNameController.text.trim(),
-                          emailController.text.trim(), phoneController.text.trim(), cnicController.text.trim(), selectedProvince!,
-                          selectedCity!, addressController.text.trim(), cameraImage!);
-                    }else if(galleryImage != null){
-                      profileUpdateController.updateData(firstNameController.text.trim(), lastNameController.text.trim(),
-                          emailController.text.trim(), phoneController.text.trim(), cnicController.text.trim(), selectedProvince!,
-                          selectedCity!, addressController.text.trim(), galleryImage!);
-                    }else{
+                    if (widget.personalInfoModel.profileImage != null) {
+                      profileUpdateController.updatePersonalDataWithImage(
+                          firstNameController.text.trim(),
+                          lastNameController.text.trim(),
+                          emailController.text.trim(),
+                          phoneController.text.trim(),
+                          cnicController.text.trim(),
+                          stateValue!,
+                          cityValue!,
+                          countryValue!,
+                          addressController.text.trim(),
+                          widget.personalInfoModel.profileImage!);
+                    } else if (cameraImage != null) {
+                      profileUpdateController.updateData(
+                          firstNameController.text.trim(),
+                          lastNameController.text.trim(),
+                          emailController.text.trim(),
+                          phoneController.text.trim(),
+                          cnicController.text.trim(),
+                          stateValue!,
+                          cityValue!,
+                          countryValue!,
+                          addressController.text.trim(),
+                          cameraImage!);
+                    } else if (galleryImage != null) {
+                      profileUpdateController.updateData(
+                          firstNameController.text.trim(),
+                          lastNameController.text.trim(),
+                          emailController.text.trim(),
+                          phoneController.text.trim(),
+                          cnicController.text.trim(),
+                          stateValue!,
+                          cityValue!,
+                          countryValue!,
+                          addressController.text.trim(),
+                          galleryImage!);
+                    } else {
                       errorToast(StringsManager.error, StringsManager.noPic);
                     }
-
-
                   }
                 },
                 child: Obx(() {
-                  return  profileUpdateController.isLoading.isTrue ?
-                  Center(
-                    child: Container(
-                        height: 7.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(AppSize.s26),
-                          color: ColorManager.primaryColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(AppSize.s0_5),
-                              spreadRadius: 2,
-                              blurRadius: 7,
-                              offset: const Offset(0, 2), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: const Center(child: CupertinoActivityIndicator())),
-                  )
+                  return profileUpdateController.isLoading.isTrue
+                      ? Center(
+                          child: Container(
+                              height: 7.h,
+                              width: 60.w,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s26),
+                                color: ColorManager.primaryColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color:
+                                        Colors.grey.withOpacity(AppSize.s0_5),
+                                    spreadRadius: 2,
+                                    blurRadius: 7,
+                                    offset: const Offset(
+                                        0, 2), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: const Center(
+                                  child: CupertinoActivityIndicator())),
+                        )
                       : const LargeButton(
-                      title:  StringsManager.continued,
-                      color: ColorManager.primaryColor);
+                          title: StringsManager.continued,
+                          color: ColorManager.primaryColor);
                 }),
               ),
 
@@ -349,12 +432,12 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
     );
   }
 
-  imagePickerDialog(){
+  imagePickerDialog() {
     Get.bottomSheet(
       Container(
           height: 17.h,
           color: ColorManager.primaryColor,
-          child:Column(
+          child: Column(
             children: [
               buildSpaceVertical(2.h),
               Padding(
@@ -367,8 +450,10 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.add_a_photo, size: 4.h, color: ColorManager.whiteColor),
-                      textStyle2(StringsManager.camera, TextAlign.right, ColorManager.whiteColor),
+                      Icon(Icons.add_a_photo,
+                          size: 4.h, color: ColorManager.whiteColor),
+                      textStyle2(StringsManager.camera, TextAlign.right,
+                          ColorManager.whiteColor),
                     ],
                   ),
                 ),
@@ -386,16 +471,17 @@ class _UpdatePersonalProfileState extends State<UpdatePersonalProfile> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.add_photo_alternate_outlined, size: 4.h, color: ColorManager.whiteColor),
-                      textStyle2(StringsManager.gallery, TextAlign.right, ColorManager.whiteColor),
+                      Icon(Icons.add_photo_alternate_outlined,
+                          size: 4.h, color: ColorManager.whiteColor),
+                      textStyle2(StringsManager.gallery, TextAlign.right,
+                          ColorManager.whiteColor),
                     ],
                   ),
                 ),
               ),
               buildSpaceVertical(2.h),
             ],
-          )
-      ),
+          )),
       enableDrag: false,
     );
   }

@@ -1,8 +1,8 @@
+import '../../../utils/constants/color_manager.dart';
+import '../../../utils/constants/strings_manager.dart';
+import '../../../utils/helpers/helper.dart';
+import '../../../utils/helpers/text_helper.dart';
 
-import 'package:apni_mandi/utils/constants/color_manager.dart';
-import 'package:apni_mandi/utils/constants/strings_manager.dart';
-import 'package:apni_mandi/utils/helpers/helper.dart';
-import 'package:apni_mandi/utils/helpers/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,7 +15,8 @@ class SplashContent extends StatelessWidget {
     return Column(
       children: <Widget>[
         buildSpaceVertical(10.h),
-        textStyle5(StringsManager.appName, TextAlign.center, ColorManager.primaryColor),
+        textStyle5(StringsManager.appName, TextAlign.center,
+            ColorManager.primaryColor),
         buildSpaceVertical(1.h),
         textStyle2(text!, TextAlign.center, ColorManager.grayColor),
         buildSpaceVertical(10.h),

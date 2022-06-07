@@ -1,6 +1,4 @@
-
-
-class StringsManager{
+class StringsManager {
   static const String appName = "APNI MANDI";
   static const String error = "Oops! Error Occurred";
   static const String success = "Hurrah!";
@@ -8,7 +6,8 @@ class StringsManager{
 
   static const String wrongEmail = "You entered a wrong email";
   static const String successEmail = "Successfully Sent a verification email";
-  static const String alreadyLogged = "User Already Logged In through this google account";
+  static const String alreadyLogged =
+      "User Already Logged In through this google account";
   static const String noPic = "Select Picture from Gallery or Camera";
   static const String noData = "No Data Found";
 
@@ -16,12 +15,15 @@ class StringsManager{
   static const String start = "Start";
   static const String next = "Next";
   static const String splash1Title = "Welcome to Apni Mandi, Let’s shop! ";
-  static const String splash2Title = "We help people connect with store \naround the Globe ";
-  static const String splash3Title = "We show the easy way to shop. \nJust stay at home with us ";
+  static const String splash2Title =
+      "We help people connect with store \naround the Globe ";
+  static const String splash3Title =
+      "We show the easy way to shop. \nJust stay at home with us ";
 
   // login screen
   static const String welcome = "Welcome Back ";
-  static const String loginText = "Sign in with your email and password  \nor continue with social media ";
+  static const String loginText =
+      "Sign in with your email and password  \nor continue with social media ";
   static const String email = "ENTER EMAIL";
   static const String passHint = "ENTER PASSWORD";
   static const String passError = "Please Enter Your Password";
@@ -34,7 +36,8 @@ class StringsManager{
 
   // signup screen
   static const String registerAcc = "Register Account";
-  static const String signupText = "Complete your details or continue \nwith social media ";
+  static const String signupText =
+      "Complete your details or continue \nwith social media ";
   static const String ename = "ENTER NAME";
   static const String search = "Search Member by Name";
   static const String name = "Name:";
@@ -53,10 +56,14 @@ class StringsManager{
 
   // personal profile completion
   static const String personalPC = "Personal Profile";
-  static const String personalPCText = "Complete your personal profile to continue ";
+  static const String personalPCText =
+      "Complete your personal profile to continue ";
   static const String fName = "ENTER FIRST NAME";
   static const String lName = "ENTER LAST NAME";
-  static const String phoneNo = "ENTER PHONE NO";
+  static const String phoneNo = "ENTER PHONE NO 01";
+  static const String phoneNo1 = "ENTER PHONE NO 02";
+  static const String phoneNo2 = "ENTER PHONE NO 03";
+
   static const String cnicNo = "ENTER CNIC NO";
   static const String address = "ENTER ADDRESS";
   static const String sCity = "Select City";
@@ -73,10 +80,12 @@ class StringsManager{
   static const String sDistrict = "Select District";
   static const String sMandi = "Select Mandi";
   static const String businessPC = "Business Profile";
-  static const String businessPCText = "Complete your business profile to continue ";
+  static const String businessPCText =
+      "Complete your business profile to continue ";
   static const String ntnNo = "ENTER NTN NO";
 
   // forgot password
-  static const String forgotPassText = "Please enter your email and we will\nsend you a reset email ";
+  static const String forgotPassText =
+      "Please enter your email and we will\nsend you a reset email ";
   static const String changePic = "Change Picture";
 }

@@ -1,9 +1,9 @@
-import 'package:apni_mandi/models/business_info_model.dart';
-import 'package:apni_mandi/models/personal_info_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../models/Users_info_model.dart';
+import '../models/business_info_model.dart';
+import '../models/personal_info_model.dart';
 import '../models/user_business_info_model.dart';
 
 class ProfileController extends GetxController {

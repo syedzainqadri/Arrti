@@ -1,11 +1,4 @@
-
 import 'dart:async';
-import 'package:apni_mandi/utils/constants/assets_manager.dart';
-import 'package:apni_mandi/utils/constants/color_manager.dart';
-import 'package:apni_mandi/utils/constants/strings_manager.dart';
-import 'package:apni_mandi/utils/constants/values_manager.dart';
-import 'package:apni_mandi/utils/helpers/helper.dart';
-import 'package:apni_mandi/utils/helpers/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
@@ -13,6 +6,12 @@ import 'package:get/get.dart';
 import '../../../controllers/profile_controller.dart';
 import '../../../models/business_info_model.dart';
 import '../../../models/personal_info_model.dart';
+import '../../../utils/constants/assets_manager.dart';
+import '../../../utils/constants/color_manager.dart';
+import '../../../utils/constants/strings_manager.dart';
+import '../../../utils/constants/values_manager.dart';
+import '../../../utils/helpers/helper.dart';
+import '../../../utils/helpers/text_helper.dart';
 
 class LoginSuccessScreen extends StatefulWidget {
   const LoginSuccessScreen({Key? key}) : super(key: key);
@@ -22,7 +21,6 @@ class LoginSuccessScreen extends StatefulWidget {
 }
 
 class _LoginSuccessScreenState extends State<LoginSuccessScreen> {
-
   late Timer timer;
   final ProfileController _profileController = Get.put(ProfileController());
   PersonalInfoModel? personalInfoModel;
@@ -34,28 +32,28 @@ class _LoginSuccessScreenState extends State<LoginSuccessScreen> {
     super.initState();
   }
 
-  getData() async{
+  getData() async {
     personalInfoModel = await _profileController.getPersonalData();
     businessInfoModel = await _profileController.getBusinessData();
 
-    if(personalInfoModel != null && businessInfoModel != null ){
+    if (personalInfoModel != null && businessInfoModel != null) {
       timer = Timer.periodic(const Duration(seconds: 3), (timer) {
         Get.offNamed('/waitingView');
       });
-    }else if(personalInfoModel == null){
+    } else if (personalInfoModel == null) {
       timer = Timer.periodic(const Duration(seconds: 3), (timer) {
         Get.offNamed('/personalPC');
       });
-    }else if(businessInfoModel == null){
+    } else if (businessInfoModel == null) {
       timer = Timer.periodic(const Duration(seconds: 3), (timer) {
         Get.offNamed('/businessPC');
       });
-    }else{
+    } else {
       timer = Timer.periodic(const Duration(seconds: 3), (timer) {
         Get.offNamed('/personalPC');
       });
     }
-    setState(() { });
+    setState(() {});
   }
 
   @override
@@ -75,7 +73,8 @@ class _LoginSuccessScreenState extends State<LoginSuccessScreen> {
             child: Image.asset(AssetImages.success, height: 50.h),
           ),
           buildSpaceVertical(10.h),
-          textStyle5(StringsManager.loginSuccess, TextAlign.center, ColorManager.primaryColor),
+          textStyle5(StringsManager.loginSuccess, TextAlign.center,
+              ColorManager.primaryColor),
         ],
       ),
     );

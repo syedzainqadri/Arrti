@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PersonalInfoModel {
+class UsersInfoModel {
   String? userId;
   String? firstName;
   String? lastName;
@@ -8,12 +8,11 @@ class PersonalInfoModel {
   String? phoneNo;
   String? cnicNo;
   String? city;
-  String? country;
   String? address;
   String? province;
   String? profileImage;
 
-  PersonalInfoModel(
+  UsersInfoModel(
       {this.userId,
       this.firstName,
       this.lastName,
@@ -21,13 +20,12 @@ class PersonalInfoModel {
       this.phoneNo,
       this.cnicNo,
       this.city,
-      this.country,
       this.address,
       this.province,
       this.profileImage});
 
-  factory PersonalInfoModel.fromDocument(DocumentSnapshot doc) {
-    return PersonalInfoModel(
+  factory UsersInfoModel.fromDocument(DocumentSnapshot doc) {
+    return UsersInfoModel(
       userId: doc.get('id'),
       firstName: doc.get('firstName'),
       lastName: doc.get('lastName'),
@@ -35,14 +33,13 @@ class PersonalInfoModel {
       phoneNo: doc.get('phoneNo'),
       cnicNo: doc.get('cnicNo'),
       city: doc.get('city'),
-      country: doc.get('country'),
       address: doc.get('address'),
       province: doc.get('province'),
       profileImage: doc.get('image'),
     );
   }
 
-  PersonalInfoModel.fromJson(Map<String, dynamic> json) {
+  UsersInfoModel.fromJson(Map<String, dynamic> json) {
     userId = json['id'];
     firstName = json['firstName'];
     lastName = json['lastName'];
@@ -50,7 +47,6 @@ class PersonalInfoModel {
     phoneNo = json['phoneNo'];
     cnicNo = json['cnicNo'];
     city = json['city'];
-    country = json['city'];
     address = json['address'];
     province = json['province'];
     profileImage = json['image'];

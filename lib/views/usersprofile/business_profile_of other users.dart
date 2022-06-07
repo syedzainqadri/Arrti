@@ -1,48 +1,56 @@
-import 'package:apni_mandi/views/profile/update_personal_profile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/profile_controller.dart';
-import '../../models/personal_info_model.dart';
+import '../../models/user_business_info_model.dart';
 import '../../utils/constants/assets_manager.dart';
 import '../../utils/constants/color_manager.dart';
 import '../../utils/constants/values_manager.dart';
 import '../../utils/helpers/helper.dart';
 import '../../utils/helpers/text_helper.dart';
 
-class PersonalProfileScreen extends StatefulWidget {
-  const PersonalProfileScreen({Key? key}) : super(key: key);
+class BussinessProfileofotherusers extends StatefulWidget {
+  String uid;
+  BussinessProfileofotherusers(this.uid, {Key? key}) : super(key: key);
 
   @override
-  State<PersonalProfileScreen> createState() => _PersonalProfileScreenState();
+  State<BussinessProfileofotherusers> createState() =>
+      _BussinessProfileofotherusersState();
 }
 
-class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
+class _BussinessProfileofotherusersState
+    extends State<BussinessProfileofotherusers> {
   final ProfileController _profileController = Get.put(ProfileController());
-  PersonalInfoModel? personalInfoModel;
+  UserBusinessInfoModel? userBusinessInfoModel;
 
   @override
   void initState() {
     super.initState();
-    getData();
+    getData(widget.uid);
   }
 
-  getData() async {
-    personalInfoModel = await _profileController.getPersonalData();
+  getData(usersId) async {
+    userBusinessInfoModel =
+        await _profileController.getUsersBusinessData(usersId);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: ColorManager.primaryColor,
+          centerTitle: true,
+          title: Text(userBusinessInfoModel!.businessName.toString())),
       body: _profileController.isLoading.isTrue
           ? const Center(child: CircularProgressIndicator())
-          : personalInfoModel != null
+          : userBusinessInfoModel != null
               ? SingleChildScrollView(
                   child: Column(
                     children: [
                       buildSpaceVertical(3.h),
-                      personalInfoModel!.profileImage != null
+                      userBusinessInfoModel!.profileImage != null
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -51,20 +59,14 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                                   radius: 60,
                                   backgroundColor: ColorManager.grayColor,
                                   backgroundImage: NetworkImage(
-                                      personalInfoModel!.profileImage ?? ''),
+                                      userBusinessInfoModel!.profileImage ??
+                                          ''),
                                 ),
                                 buildSpaceHorizontal(20.w),
-                                IconButton(
-                                  onPressed: () {
-                                    Get.to(UpdatePersonalProfile(
-                                        personalInfoModel: personalInfoModel!));
-                                  },
-                                  icon: const Icon(
-                                    Icons.edit,
-                                    color: ColorManager.primaryColor,
-                                    size: 30,
-                                  ),
-                                )
+                                userBusinessInfoModel!.isPresidence == true
+                                    ? textStyle2("President", TextAlign.center,
+                                        ColorManager.primaryColor)
+                                    : SizedBox(),
                               ],
                             )
                           : Row(
@@ -78,53 +80,33 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                                       AssetImage(AssetImages.avatar),
                                 ),
                                 buildSpaceHorizontal(20.w),
-                                IconButton(
-                                  onPressed: () {
-                                    Get.to(UpdatePersonalProfile(
-                                        personalInfoModel: personalInfoModel!));
-                                  },
-                                  icon: const Icon(
-                                    Icons.edit,
-                                    color: ColorManager.primaryColor,
-                                    size: 30,
-                                  ),
-                                )
+                                // IconButton(
+                                //   onPressed: () {
+                                //     Get.to(UpdateBusinessProfile(
+                                //         businessInfoModel: businessInfoModel!));
+                                //   },
+                                //   icon: const Icon(
+                                //     Icons.edit,
+                                //     color: ColorManager.primaryColor,
+                                //     size: 30,
+                                //   ),
+                                // )
                               ],
                             ),
-
                       buildSpaceVertical(3.h),
-
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            textStyle3("Personal Name:", TextAlign.center,
+                            textStyle3("Business Name:", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2(
-                                "${personalInfoModel!.firstName}  ${personalInfoModel!.lastName} ",
-                                TextAlign.center,
-                                ColorManager.primaryColor),
-                          ],
-                        ),
-                      ),
-
-                      buildSpaceVertical(2.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            textStyle3("Personal No:", TextAlign.center,
-                                ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.phoneNo}",
+                            textStyle2("${userBusinessInfoModel!.businessName}",
                                 TextAlign.center, ColorManager.primaryColor),
                           ],
                         ),
                       ),
-
                       buildSpaceVertical(2.h),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -132,16 +114,72 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            textStyle3("Personal Email : ", TextAlign.center,
+                            textStyle3("Business No:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${userBusinessInfoModel!.phoneNo}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Business Email", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${userBusinessInfoModel!.email}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Member Since", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${userBusinessInfoModel!.memberSince}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Business City:", TextAlign.center,
+                                ColorManager.primaryColor),
+                            textStyle2("${userBusinessInfoModel!.city}",
+                                TextAlign.center, ColorManager.primaryColor),
+                          ],
+                        ),
+                      ),
+                      buildSpaceVertical(2.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textStyle3("Business Address:", TextAlign.center,
                                 ColorManager.primaryColor),
                             Expanded(
-                              child: textStyle2("${personalInfoModel!.email}",
-                                  TextAlign.center, ColorManager.primaryColor),
-                            ),
+                                child: textStyle2(
+                                    "${userBusinessInfoModel!.address}",
+                                    TextAlign.center,
+                                    ColorManager.primaryColor)),
                           ],
                         ),
                       ),
-
                       buildSpaceVertical(2.h),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -149,60 +187,43 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            textStyle3("Personal CNIC", TextAlign.center,
+                            textStyle3("Business Province:", TextAlign.center,
                                 ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.cnicNo}",
+                            textStyle2("${userBusinessInfoModel!.province}",
                                 TextAlign.center, ColorManager.primaryColor),
                           ],
                         ),
                       ),
-
                       buildSpaceVertical(2.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            textStyle3("Personal City:", TextAlign.center,
-                                ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.city}",
-                                TextAlign.center, ColorManager.primaryColor),
-                          ],
-                        ),
-                      ),
-
-                      buildSpaceVertical(2.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            textStyle3("Personal Address:", TextAlign.center,
-                                ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.address}",
-                                TextAlign.center, ColorManager.primaryColor),
-                          ],
-                        ),
-                      ),
-
-                      buildSpaceVertical(2.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            textStyle3("Personal Province:", TextAlign.center,
-                                ColorManager.primaryColor),
-                            textStyle2("${personalInfoModel!.province}",
-                                TextAlign.center, ColorManager.primaryColor),
-                          ],
-                        ),
-                      ),
-
-                      // buildSpaceVertical(10.h),
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(
+                      //       horizontal: AppPadding.p20),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       textStyle3("Membership Status:", TextAlign.center,
+                      //           ColorManager.primaryColor),
+                      //       Container(
+                      //         height: 6.h,
+                      //         width: 20.w,
+                      //         decoration: BoxDecoration(
+                      //           borderRadius:
+                      //               BorderRadius.circular(AppSize.s20),
+                      //           color: userBusinessInfoModel!.membershipStatus!
+                      //               ? ColorManager.greenColor
+                      //               : ColorManager.redColor,
+                      //         ),
+                      //         child: Center(
+                      //             child: textStyle2(
+                      //                 userBusinessInfoModel!.membershipStatus!
+                      //                     ? "Active"
+                      //                     : "Inactive",
+                      //                 TextAlign.center,
+                      //                 ColorManager.whiteColor)),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 )
@@ -210,5 +231,37 @@ class _PersonalProfileScreenState extends State<PersonalProfileScreen> {
                   child: textStyle3("No Personal Info Available",
                       TextAlign.center, ColorManager.primaryColor)),
     );
+  }
+
+  updateToPremimum(userId) async {
+    var val = await FirebaseFirestore.instance
+        .collection("usersBusinessData")
+        .doc(userId)
+        .update({'membershipStatus': true});
+    return val;
+  }
+
+  removeFromPremimum(userId) async {
+    var val = await FirebaseFirestore.instance
+        .collection("usersBusinessData")
+        .doc(userId)
+        .update({'membershipStatus': false});
+    return val;
+  }
+
+  makePresedent(userId) async {
+    var val = await FirebaseFirestore.instance
+        .collection("usersBusinessData")
+        .doc(userId)
+        .update({'isPresidence': true});
+    return val;
+  }
+
+  removePresedent(userId) async {
+    var val = await FirebaseFirestore.instance
+        .collection("usersBusinessData")
+        .doc(userId)
+        .update({'isPresidence': false});
+    return val;
   }
 }

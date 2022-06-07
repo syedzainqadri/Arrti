@@ -1,6 +1,7 @@
-import 'package:apni_mandi/views/login/screen/login_screen.dart';
-import 'package:apni_mandi/views/register/screen/signup_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../views/login/screen/login_screen.dart';
+import '../views/register/screen/signup_screen.dart';
 
 class AuthToggleView extends StatefulWidget {
   const AuthToggleView({Key? key}) : super(key: key);
