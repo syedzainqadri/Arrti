@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:csc_picker/csc_picker.dart';
-
 import '../../../controllers/personal_profile_completion_controller.dart';
 import '../../../utils/constants/assets_manager.dart';
 import '../../../utils/constants/color_manager.dart';
@@ -13,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
-
 import '../../../widgets/large_button.dart';
 import '../../../widgets/text_field.dart';
 

@@ -8,7 +8,6 @@ import '../views/profile/waiting_screen.dart';
 import '../views/profile_completion/screens/business_profile_completion.dart';
 import '../views/profile_completion/screens/personal_profile_completion.dart';
 import '../views/register/components/register_success_screen.dart';
-import '../views/search_member/screen/search_member_screen.dart';
 import '../views/splash/splash_screen.dart';
 import '../widgets/auth_toggle_view.dart';
 
@@ -33,10 +32,10 @@ class AppRoutes {
         name: '/waitingView',
         page: () => const WaitingScreen(),
         transition: Transition.fadeIn),
-    GetPage(
-        name: '/searchView',
-        page: () => const SearchMemberScreen(),
-        transition: Transition.fadeIn),
+    // GetPage(
+    //     name: '/searchView',
+    //     page: () => const SearchMemberScreen(),
+    //     transition: Transition.fadeIn),
     GetPage(name: '/allUsers', page: () => const AllUsers()),
   ];
 }
