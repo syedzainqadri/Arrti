@@ -37,19 +37,19 @@ class _LoginSuccessScreenState extends State<LoginSuccessScreen> {
     businessInfoModel = await _profileController.getBusinessData();
 
     if (personalInfoModel != null && businessInfoModel != null) {
-      timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         Get.offNamed('/waitingView');
       });
     } else if (personalInfoModel == null) {
-      timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         Get.offNamed('/personalPC');
       });
     } else if (businessInfoModel == null) {
-      timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         Get.offNamed('/businessPC');
       });
     } else {
-      timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         Get.offNamed('/personalPC');
       });
     }

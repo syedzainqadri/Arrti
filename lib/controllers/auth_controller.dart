@@ -63,7 +63,7 @@ class AuthController extends GetxController {
           email: email, password: password);
       addAuthData(name, email, password);
       isRLoading.value = false;
-      Get.toNamed('/signupSuccess');
+      Get.toNamed('/waitingView');
       successToast(StringsManager.success, StringsManager.successMsj);
     } on FirebaseAuthException catch (e) {
       errorToast(StringsManager.error, e.message!);
@@ -82,7 +82,7 @@ class AuthController extends GetxController {
           email: email, password: password);
       prefs.setString("userId", _userCredential!.user!.uid);
       isLoading.value = false;
-      Get.toNamed('/signinSuccess');
+      Get.toNamed('/waitingView');
       successToast(StringsManager.success, StringsManager.successMsj);
     } on FirebaseAuthException catch (e) {
       errorToast(StringsManager.error, e.message!);

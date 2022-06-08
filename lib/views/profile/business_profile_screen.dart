@@ -167,9 +167,7 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  textStyle3(
-                                      "Phone Number 02 ",
-                                      TextAlign.center,
+                                  textStyle3("Phone Number ", TextAlign.center,
                                       ColorManager.primaryColor),
                                   textStyle2(
                                       "${businessInfoModel!.phoneNo01}",
@@ -217,22 +215,22 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                         ),
                       ),
                       buildSpaceVertical(2.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            textStyle3("Business Country:", TextAlign.center,
-                                ColorManager.primaryColor),
-                            Expanded(
-                                child: textStyle2(
-                                    "${businessInfoModel!.district}",
-                                    TextAlign.center,
-                                    ColorManager.primaryColor)),
-                          ],
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(
+                      //       horizontal: AppPadding.p20),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       textStyle3("Business Country:", TextAlign.center,
+                      //           ColorManager.primaryColor),
+                      //       Expanded(
+                      //           child: textStyle2(
+                      //               "${businessInfoModel!.district}",
+                      //               TextAlign.center,
+                      //               ColorManager.primaryColor)),
+                      //     ],
+                      //   ),
+                      // ),
                       buildSpaceVertical(2.h),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -244,23 +242,6 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                                 ColorManager.primaryColor),
                             textStyle2("${businessInfoModel!.province}",
                                 TextAlign.center, ColorManager.primaryColor),
-                          ],
-                        ),
-                      ),
-                      buildSpaceVertical(2.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            textStyle3("Business City:", TextAlign.center,
-                                ColorManager.primaryColor),
-                            Expanded(
-                                child: textStyle2(
-                                    "${businessInfoModel!.city}",
-                                    TextAlign.center,
-                                    ColorManager.primaryColor)),
                           ],
                         ),
                       ),
@@ -297,19 +278,30 @@ class _BusinessProfileScreenState extends State<BusinessProfileScreen> {
                       ),
                       buildSpaceVertical(4.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            textStyle3("Membership Status:", TextAlign.center, ColorManager.primaryColor),
+                            textStyle3("Membership Status:", TextAlign.center,
+                                ColorManager.primaryColor),
                             Container(
                               height: 6.h,
                               width: 20.w,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppSize.s20),
-                                color: businessInfoModel!.membershipStatus! ? ColorManager.greenColor : ColorManager.redColor,
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s20),
+                                color: businessInfoModel!.membershipStatus!
+                                    ? ColorManager.greenColor
+                                    : ColorManager.redColor,
                               ),
-                              child: Center(child: textStyle2(businessInfoModel!.membershipStatus! ? "Active" : "Inactive", TextAlign.center, ColorManager.whiteColor)),
+                              child: Center(
+                                  child: textStyle2(
+                                      businessInfoModel!.membershipStatus!
+                                          ? "Active"
+                                          : "Inactive",
+                                      TextAlign.center,
+                                      ColorManager.whiteColor)),
                             ),
                           ],
                         ),

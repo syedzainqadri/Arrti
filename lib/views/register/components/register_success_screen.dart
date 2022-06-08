@@ -6,7 +6,6 @@ import '../../../utils/constants/values_manager.dart';
 import '../../../utils/helpers/helper.dart';
 import '../../../utils/helpers/text_helper.dart';
 import 'package:flutter/material.dart';
-
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +21,7 @@ class _RegisterSuccessScreenState extends State<RegisterSuccessScreen> {
 
   @override
   void initState() {
-    timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       Get.offNamed('/authView');
     });
     super.initState();

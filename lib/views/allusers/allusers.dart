@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants/color_manager.dart';
 import '../../utils/constants/values_manager.dart';
@@ -19,15 +20,15 @@ class _AllUsersState extends State<AllUsers> {
   List<Map> searchResult = [];
   List<Map> filterdResult = [];
   List<Map> searchResultcity = [];
-
-  String? selectedCity;
+  String? stateValue;
+  String? countryValue;
+  String? cityValue;
   bool isloading = false;
   @override
   void initState() {
     super.initState();
     searchResult.clear;
     searchAll();
-    // searchAllwithcity();
   }
 
   void searchAll() async {
@@ -164,14 +165,14 @@ class _AllUsersState extends State<AllUsers> {
                   border: Border.all(
                     color: ColorManager.primaryColor,
                   ),
-                  borderRadius: BorderRadius.circular(22),
+                  borderRadius: BorderRadius.circular(50),
                 ),
                 child: DropdownButton<String>(
                     menuMaxHeight: Get.height * 0.7,
                     alignment: Alignment.center,
                     underline: Container(),
-                    hint: const Text('  Select city'),
-                    value: selectedCity,
+                    hint: const Text('Select city'),
+                    value: cityValue,
                     items: pCity.map((e) {
                       return DropdownMenuItem<String>(
                         value: e,
@@ -180,29 +181,119 @@ class _AllUsersState extends State<AllUsers> {
                     }).toList(),
                     onChanged: (val) {
                       setState(() {
-                        selectedCity = val!;
+                        cityValue = val!;
                       });
                     }),
               ),
             ),
-            Container(
-              height: 60,
-              padding: const EdgeInsets.all(10),
-              width: Get.width / 2,
-              child: Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(ColorManager.primaryColor)),
-                  onPressed: () {
-                    searchResult.clear();
-                    // searchcityList.clear();
-                    onSearch();
-                    onSearchcity();
-                  },
-                  child: textStyle2("search", TextAlign.center, Colors.white),
-                ),
-              ),
+            // Container(
+            //   margin: EdgeInsets.all(20),
+            //   child: CSCPicker(
+            //     ///Enable disable state dropdown [OPTIONAL PARAMETER]
+            //     showStates: true,
+            //     // defaultCountry: DefaultCountry.Pakistan,
+            //     // disableCountry: true,
+
+            //     /// Enable disable city drop down [OPTIONAL PARAMETER]
+            //     showCities: true,
+
+            //     ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
+            //     flagState: CountryFlag.DISABLE,
+
+            //     ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
+            //     dropdownDecoration: BoxDecoration(
+            //         borderRadius:
+            //             const BorderRadius.all(Radius.circular(AppSize.s22)),
+            //         color: Colors.white,
+            //         border:
+            //             Border.all(color: ColorManager.primaryColor, width: 1)),
+
+            //     ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
+            //     disabledDropdownDecoration: BoxDecoration(
+            //         borderRadius:
+            //             const BorderRadius.all(Radius.circular(AppSize.s22)),
+            //         color: Colors.white,
+            //         border:
+            //             Border.all(color: ColorManager.primaryColor, width: 1)),
+
+            //     ///placeholders for dropdown search field
+            //     countrySearchPlaceholder: "Country",
+            //     stateSearchPlaceholder: "State",
+            //     citySearchPlaceholder: "City",
+
+            //     ///labels for dropdown
+            //     countryDropdownLabel: "Country",
+            //     stateDropdownLabel: "State",
+            //     cityDropdownLabel: "City",
+
+            //     ///Default Country
+            //     //defaultCountry: DefaultCountry.India,
+
+            //     ///Disable country dropdown (Note: use it with default country)
+            //     //disableCountry: true,
+
+            //     ///selected item style [OPTIONAL PARAMETER]
+            //     selectedItemStyle: const TextStyle(
+            //       color: Colors.black,
+            //       fontSize: 14,
+            //     ),
+
+            //     ///DropdownDialog Heading style [OPTIONAL PARAMETER]
+            //     dropdownHeadingStyle: const TextStyle(
+            //         color: Colors.black,
+            //         fontSize: 17,
+            //         fontWeight: FontWeight.bold),
+
+            //     ///DropdownDialog Item style [OPTIONAL PARAMETER]
+            //     dropdownItemStyle: TextStyle(
+            //       color: Colors.black,
+            //       fontSize: 14,
+            //     ),
+
+            //     ///Dialog box radius [OPTIONAL PARAMETER]
+            //     dropdownDialogRadius: 10.0,
+
+            //     ///Search bar radius [OPTIONAL PARAMETER]
+            //     searchBarRadius: 10.0,
+
+            //     ///triggers once country selected in dropdown
+            //     onCountryChanged: (value) {
+            //       setState(() {
+            //         ///store value in country variable
+            //         countryValue = value;
+            //       });
+            //     },
+
+            //     ///triggers once state selected in dropdown
+            //     onStateChanged: (value) {
+            //       setState(() {
+            //         ///store value in state variable
+            //         stateValue = value;
+            //       });
+            //     },
+
+            //     ///triggers once city selected in dropdown
+            //     onCityChanged: (value) {
+            //       setState(() {
+            //         ///store value in city variable
+            //         cityValue = value;
+            //       });
+            //     },
+            //   ),
+            // ),
+
+            TextButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(ColorManager.primaryColor)),
+              onPressed: () {
+                searchResult.clear();
+
+                onSearch();
+                onSearchcity();
+              },
+              child:
+                  textStyle2(" search        ", TextAlign.center, Colors.white),
             ),
             const Divider(
               color: ColorManager.primaryColor,
@@ -225,7 +316,7 @@ class _AllUsersState extends State<AllUsers> {
                                   ));
                             },
                             child: _searchControler.text != null
-                                ? selectedCity == null
+                                ? cityValue == null
                                     ? searchResult != null
                                         ? ListTile(
                                             title: Text(
@@ -246,7 +337,7 @@ class _AllUsersState extends State<AllUsers> {
                                             "No user found",
                                           ))
                                     : SizedBox()
-                                : selectedCity.toString().trim() ==
+                                : cityValue.toString().trim() ==
                                         searchResult[index]['city']
                                     ? ListTile(
                                         title: Text(

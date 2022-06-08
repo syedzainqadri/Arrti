@@ -1,11 +1,6 @@
 List<String> cities = [];
-List<String> pAKprovince = [
-  "Islamabad",
-  "punjab",
-  "Sindh",
-  "KPK",
-  "Blochistan"
-];
+
+List<String> pAKprovince = ["Punjab", "Sindh", "KPK", "Balochistan"];
 
 List<String> iCity = [
   'islamabad',
